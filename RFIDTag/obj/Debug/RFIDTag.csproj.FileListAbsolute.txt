@@ -1,0 +1,41 @@
+C:\Users\dyeh\source\repos\RFIDConsoleApp - Copy\RFIDTag\obj\Debug\RFIDTag.csprojAssemblyReference.cache
+C:\Users\dyeh\source\repos\RFIDConsoleApp - Copy\RFIDTag\obj\Debug\RFIDTag.csproj.CoreCompileInputs.cache
+C:\Users\dyeh\source\repos\RFIDConsoleApp - Copy\RFIDTag\bin\Debug\RFIDTag.exe.config
+C:\Users\dyeh\source\repos\RFIDConsoleApp - Copy\RFIDTag\bin\Debug\RFIDTag.exe
+C:\Users\dyeh\source\repos\RFIDConsoleApp - Copy\RFIDTag\bin\Debug\RFIDTag.pdb
+C:\Users\dyeh\source\repos\RFIDConsoleApp - Copy\RFIDTag\bin\Debug\Reader.dll
+C:\Users\dyeh\source\repos\RFIDConsoleApp - Copy\RFIDTag\bin\Debug\Reader.pdb
+C:\Users\dyeh\source\repos\RFIDConsoleApp - Copy\RFIDTag\obj\Debug\RFIDTag.csproj.GenerateResource.cache
+C:\Users\dyeh\source\repos\RFIDConsoleApp - Copy\RFIDTag\obj\Debug\RFIDTag.csproj.CopyComplete
+C:\Users\dyeh\source\repos\RFIDConsoleApp - Copy\RFIDTag\obj\Debug\RFIDTag.exe
+C:\Users\dyeh\source\repos\RFIDConsoleApp - Copy\RFIDTag\obj\Debug\RFIDTag.pdb
+C:\Users\dyeh\source\repos\RFIDConsoleApp - Copy\RFIDTag\obj\Debug\RFIDTag.Properties.RFIDResources.resources
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.csprojAssemblyReference.cache
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.ProjectInstaller.resources
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.Properties.Resources.resources
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.csproj.GenerateResource.cache
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.csproj.CoreCompileInputs.cache
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\Debug\RFIDTag.exe.config
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\Debug\RFIDTag.exe.manifest
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\Debug\RFIDTag.application
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\Debug\RFIDTag.exe
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\Debug\RFIDTag.pdb
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\Debug\BlowFishClassLibrary.dll
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\Debug\BlowFishClassLibrary.pdb
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.TrustInfo.xml
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.exe.manifest
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.application
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.csproj.CopyComplete
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.exe
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.pdb
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\Debug\Reader.dll
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\Debug\Reader.pdb
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.exe.config
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.exe.manifest
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.application
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.exe
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.pdb
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\BlowFishClassLibrary.dll
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\Reader.dll
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\BlowFishClassLibrary.pdb
+C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\Reader.pdb

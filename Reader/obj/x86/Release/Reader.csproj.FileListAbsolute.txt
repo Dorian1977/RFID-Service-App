@@ -1,0 +1,62 @@
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\中文\UHFDemo_v3.8.1\Reader\bin\x86\Release\Reader.dll
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\中文\UHFDemo_v3.8.1\Reader\bin\x86\Release\Reader.pdb
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\中文\UHFDemo_v3.8.1\Reader\bin\x86\Release\CustomControl.dll
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\中文\UHFDemo_v3.8.1\Reader\bin\x86\Release\CustomControl.pdb
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\中文\UHFDemo_v3.8.1\Reader\obj\x86\Release\Reader.dll
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\中文\UHFDemo_v3.8.1\Reader\obj\x86\Release\Reader.pdb
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\bin\x86\Release\Reader.dll
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\bin\x86\Release\Reader.pdb
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\bin\x86\Release\CustomControl.dll
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\bin\x86\Release\CustomControl.pdb
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\obj\x86\Release\Reader.csprojResolveAssemblyReference.cache
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\obj\x86\Release\Reader.dll
+C:\Users\test\Desktop\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\obj\x86\Release\Reader.pdb
+E:\dbak\1aCode\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\bin\x86\Release\Reader.dll
+E:\dbak\1aCode\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\bin\x86\Release\Reader.pdb
+E:\dbak\1aCode\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\bin\x86\Release\CustomControl.dll
+E:\dbak\1aCode\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\bin\x86\Release\CustomControl.pdb
+E:\dbak\1aCode\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\obj\x86\Release\Reader.csprojAssemblyReference.cache
+E:\dbak\1aCode\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\obj\x86\Release\Reader.csproj.CoreCompileInputs.cache
+E:\dbak\1aCode\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\obj\x86\Release\Reader.csproj.CopyComplete
+E:\dbak\1aCode\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\obj\x86\Release\Reader.dll
+E:\dbak\1aCode\UHFDemoV3.8.1\UHFDemoV3.8.1\UHFDemo-cn\UHFDemo_v3.8.1\Reader\obj\x86\Release\Reader.pdb
+C:\Users\dyeh\Downloads\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\bin\x86\Release\Reader.dll
+C:\Users\dyeh\Downloads\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\bin\x86\Release\Reader.pdb
+C:\Users\dyeh\Downloads\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\bin\x86\Release\CustomControl.dll
+C:\Users\dyeh\Downloads\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\bin\x86\Release\CustomControl.pdb
+C:\Users\dyeh\Downloads\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\obj\x86\Release\Reader.csprojAssemblyReference.cache
+C:\Users\dyeh\Downloads\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\obj\x86\Release\Reader.csproj.CopyComplete
+C:\Users\dyeh\Downloads\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\obj\x86\Release\Reader.dll
+C:\Users\dyeh\Downloads\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\obj\x86\Release\Reader.pdb
+C:\Users\dyeh\Documents\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\bin\x86\Release\Reader.dll
+C:\Users\dyeh\Documents\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\bin\x86\Release\Reader.pdb
+C:\Users\dyeh\Documents\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\bin\x86\Release\CustomControl.dll
+C:\Users\dyeh\Documents\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\bin\x86\Release\CustomControl.pdb
+C:\Users\dyeh\Documents\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\obj\x86\Release\Reader.csprojAssemblyReference.cache
+C:\Users\dyeh\Documents\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\obj\x86\Release\Reader.csproj.CoreCompileInputs.cache
+C:\Users\dyeh\Documents\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\obj\x86\Release\Reader.csproj.CopyComplete
+C:\Users\dyeh\Documents\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\obj\x86\Release\Reader.dll
+C:\Users\dyeh\Documents\mini small uhf rfid reader module czs6147\test demo software\PC-demo-software (c#)\PC-demo-software (c#)\UHFDemo\Reader\obj\x86\Release\Reader.pdb
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\UHFDemo\Reader\bin\x86\Release\Reader.dll
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\UHFDemo\Reader\bin\x86\Release\Reader.pdb
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\UHFDemo\Reader\bin\x86\Release\CustomControl.dll
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\UHFDemo\Reader\bin\x86\Release\CustomControl.pdb
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\UHFDemo\Reader\obj\x86\Release\Reader.csprojAssemblyReference.cache
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\UHFDemo\Reader\obj\x86\Release\Reader.csproj.CoreCompileInputs.cache
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\UHFDemo\Reader\obj\x86\Release\Reader.csproj.CopyComplete
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\UHFDemo\Reader\obj\x86\Release\Reader.dll
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\UHFDemo\Reader\obj\x86\Release\Reader.pdb
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\RFIDApplication\Reader\bin\x86\Release\Reader.dll
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\RFIDApplication\Reader\bin\x86\Release\Reader.pdb
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\RFIDApplication\Reader\bin\x86\Release\CustomControl.dll
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\RFIDApplication\Reader\bin\x86\Release\CustomControl.pdb
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\RFIDApplication\Reader\obj\x86\Release\Reader.csprojAssemblyReference.cache
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\RFIDApplication\Reader\obj\x86\Release\Reader.csproj.CoreCompileInputs.cache
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\RFIDApplication\Reader\obj\x86\Release\Reader.csproj.CopyComplete
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\RFIDApplication\Reader\obj\x86\Release\Reader.dll
+C:\Users\dyeh\source\repos\RFID Application\RFID Applicaiotn\RFIDApplication\Reader\obj\x86\Release\Reader.pdb
+C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\bin\x86\Release\Reader.dll
+C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\bin\x86\Release\Reader.pdb
+C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\x86\Release\Reader.csproj.CoreCompileInputs.cache
+C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\x86\Release\Reader.dll
+C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\x86\Release\Reader.pdb
