@@ -583,3 +583,804 @@ Affected parameters are:
    logtoconsole = 
    logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
    assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Warning: The source RFIDService is not registered on the local machine.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Warning: The source RFIDService is not registered on the local machine.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Warning: The source RFIDService is not registered on the local machine.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Warning: The source RFIDService is not registered on the local machine.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Warning: The source RFIDService is not registered on the local machine.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Warning: The source RFIDService is not registered on the local machine.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Warning: The source RFIDService is not registered on the local machine.
+Service RFIDService is being removed from the system...
+An exception occurred during the uninstallation of the System.ServiceProcess.ServiceInstaller installer.
+System.ComponentModel.Win32Exception: The specified service does not exist as an installed service
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Creating EventLog source RFIDService in log Application...
+Rolling back assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Restoring event log to previous state for source RFIDService.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Uninstalling assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Removing EventLog source RFIDService.
+Service RFIDService is being removed from the system...
+Service RFIDService was successfully removed from the system.
+Installing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+Installing service RFIDService...
+Service RFIDService has been successfully installed.
+Creating EventLog source RFIDService in log Application...
+Committing assembly 'C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.InstallLog
+   assemblypath = C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe

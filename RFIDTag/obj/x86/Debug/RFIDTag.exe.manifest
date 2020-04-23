@@ -45,13 +45,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BlowFishClassLibrary.dll" size="109056">
-      <assemblyIdentity name="BlowFishClassLibrary" version="1.0.7416.15110" language="neutral" processorArchitecture="x86" />
+      <assemblyIdentity name="BlowFishClassLibrary" version="1.0.7417.22694" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>G9zS1Rg6Dvg1NqlmqYBMZtSl+8I=</dsig:DigestValue>
+        <dsig:DigestValue>pbc52NETMb1cPbAIGa1UK7L9RPo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,19 +63,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>ZCOChcEJLEvXXccWTyV7NkSSVps=</dsig:DigestValue>
+        <dsig:DigestValue>lkG2JnacMGVDaay7NqKB+XBcAy0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RFIDTag.exe" size="63888">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RFIDTag.exe" size="65424">
       <assemblyIdentity name="RFIDTag" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>eMHyziOkgnROytXGKp1iXlMdoqs=</dsig:DigestValue>
+        <dsig:DigestValue>TV/G7kdoKVye2yu7n3WaL6ZE1KI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -88,13 +88,13 @@
       <dsig:DigestValue>uTfPAK4sW9mD+zT6+koQBs3IQEw=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="RFIDTag.exe.config" size="381">
+  <file name="RFIDTag.exe.config" size="1539">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>JJeAfPF9ZFhsuZ1CZAdICuUGCVY=</dsig:DigestValue>
+      <dsig:DigestValue>XoU48s3JEM0HYoWt3szlCWoDz30=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

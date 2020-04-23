@@ -1,5 +1,7 @@
-﻿using System;
+﻿#define LOG_ENCRYPTED
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -22,7 +24,6 @@ namespace RFIDTag
     {
         private const ulong tonerMAXVolume = 2000000000000; //max is 2L * 1000000000
         private static ulong currentTonerVolume = 0; //1L = 1,000,000,000,000 pL
-
         private static string labelFormat = "";
         private static string tonerVolumeFile = "";
         private static string inkAuthFile = "";       
@@ -42,6 +43,11 @@ namespace RFIDTag
         public static void loadLabelFormat(byte[] lableFormatBytes)
         {
             labelFormat = Encoding.ASCII.GetString(lableFormatBytes);
+        }
+
+        public static string readinkAuthFile()
+        {
+            return inkAuthFile;
         }
 
         public static string readLabelFormat()
@@ -71,41 +77,7 @@ namespace RFIDTag
                 return false;
             }
             return true;
-        }
-
-        public static bool readInkAuthFile(out string encryptedData)
-        {//1. check file
-         //2. check encrypt data
-         //3. verify timeStamp
-         //4. update volume
-            encryptedData = "";
-            try
-            {
-                if (File.Exists(inkAuthFile))
-                {
-                    FileStream logFileStream = 
-                        new FileStream(inkAuthFile,
-                           FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read);
-                    using (StreamReader sr = new StreamReader(logFileStream))
-                    {
-                        while (!sr.EndOfStream)
-                        {
-                            encryptedData = sr.ReadLine();                            
-                        }
-                        sr.Close();
-                        logFileStream.Close();
-                    }
-                    if (encryptedData == null || encryptedData == "")
-                    {
-                        encryptedData = "";
-                        return false;
-                    }
-                    return true;
-                }
-            }
-            catch (Exception exp) { }
-            return false;
-        }
+        }            
 
         public static void addTempInkAuth()
         {           
@@ -139,6 +111,32 @@ namespace RFIDTag
             return false;
         }
 
+        public static ulong readVolumeFile()
+        {
+            //read only   
+            var readData = default(byte[]);
+            ulong tmpVolume = 0;
+            FileStream logFileStream = new FileStream(tonerVolumeFile,
+                                        FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            using (StreamReader sr = new StreamReader(logFileStream))
+            {
+                using (var memstream = new MemoryStream())
+                {
+                    sr.BaseStream.CopyTo(memstream);
+                    readData = memstream.ToArray();
+                }
+                // Clean up
+                sr.Close();
+                logFileStream.Close();
+            }
+
+            if (readData.Length != 0)
+            {
+                tmpVolume = BlowFishImpl.decodeVolumeData(readData);
+            }
+            return tmpVolume;
+        }
+
         public static bool addVolumeToFile(int intToneVolume)
         {
             bool bWritedFile = false;
@@ -147,13 +145,6 @@ namespace RFIDTag
              //2. read data inside
              //3. if read data is empty, write volume read from tag
              //4. if read data not empty, add the volume read from tag, if over max, set to max
-                /*if(IsFileLocked(new FileInfo(tonerVolumeFile)))
-                { // APrint file locked the ink data in following:
-                  //  1. start print
-                  //  2. stop print
-                  //  3. Done                    
-                    return false;
-                }*/
 
                 byte[] defaultData = BlowFishImpl.encodeVolumeData((ulong)intToneVolume * 1000000000);
                 if (!File.Exists(tonerVolumeFile))
@@ -165,7 +156,7 @@ namespace RFIDTag
                         
                         if (bWritedFile)
                         {
-                            Console.WriteLine("Ink file not found, write " +
+                            Trace.WriteLine("Ink file not found, write " +
                                 Encoding.Default.GetString(defaultData));
                             return true;
                         }
@@ -173,23 +164,8 @@ namespace RFIDTag
                     return false;
                 }
 
-                //read only
-                var readData = default(byte[]);          
-                FileStream logFileStream = new FileStream(tonerVolumeFile, 
-                                            FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                using (StreamReader sr = new StreamReader(logFileStream))
-                {
-                    using (var memstream = new MemoryStream())
-                    {
-                        sr.BaseStream.CopyTo(memstream);
-                        readData = memstream.ToArray();
-                    }
-                    // Clean up
-                    sr.Close();
-                    logFileStream.Close();
-                }
-
-                if (readData.Length == 0)
+                ulong tmpVolume = readVolumeFile();
+                if (tmpVolume == 0)
                 {//empty file
                     bWritedFile = false;
                     for (int i = 0; i < 5 && !bWritedFile; i++)
@@ -198,17 +174,16 @@ namespace RFIDTag
 
                         if (bWritedFile)
                         {
-                            Console.WriteLine("Ink file empty, write " +
+                            Trace.WriteLine("Ink file empty, write " +
                                 Encoding.Default.GetString(defaultData));
                             return true;
                         }
                     }
                 }
                 else
-                {
-                    ulong tmpVolume = BlowFishImpl.decodeVolumeData(readData);
+                {                    
                     currentTonerVolume = tmpVolume + (ulong)intToneVolume * 1000000000;
-                    Console.Write("Ink file read " + tmpVolume.ToString());
+                    Trace.WriteLine("Ink file read " + tmpVolume.ToString());
 
                     if (currentTonerVolume > tonerMAXVolume)
                         currentTonerVolume = tonerMAXVolume;
@@ -220,93 +195,112 @@ namespace RFIDTag
 
                         if (bWritedFile)
                         {
-                            Console.WriteLine(", Ink file is update, write " +
+                            Trace.WriteLine(", Ink file is update, write " +
                                 Encoding.Default.GetString(BlowFishImpl.encodeVolumeData(currentTonerVolume)));
                             return true;
                         }
                     }
                 }
             }
-            catch(Exception exp)
-            {
-            }
+            catch(Exception exp) { }
             return false;
         }
 
-        public static void addLog(string path)
+        public static string getLogData(bool bUseTagInfo, string inputTagLabel)
+        {        
+            string strHeadType = "", strIntType = "", strVolume = "",
+                   strDate = "", strSupplier = "", tagLabel = "";
+
+            if (bUseTagInfo)
+            {
+                if (tagInfo.label == "" || tagInfo.tagDecryptedInfo == "")
+                    return "";
+
+                string[] tmpList = tagInfo.tagDecryptedInfo.Split(serialSep);
+                strHeadType = tmpList[1].Substring(0, 2);
+                strIntType = tmpList[1].Substring(2, 2);
+                strVolume = tmpList[1].Substring(4, 4);
+                strDate = tmpList[1].Substring(8, 4);
+                strSupplier = tmpList[1].Substring(12, 2);
+                tagLabel = tagInfo.label;
+            }
+            else
+            {
+                tagLabel = inputTagLabel;
+            }
+
+            string inputData = "";
+            DateTime localDate = DateTime.Now;
+            inputData = localDate.ToString("MM/dd/yy HH:mm:ss") + ",";
+            inputData += tagLabel + "," + strHeadType + "," + strIntType + ",";
+            inputData += strVolume + "," + strDate + "," + strSupplier + ",";
+            inputData += readVolumeFile().ToString();
+            return inputData;
+        }
+
+        public static void addLog(string encryptedData)
         {
-            if (tagInfo.label == "" || tagInfo.tagDecryptedInfo == "")
-                return;
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            path += "\\RFIDTag";
 
-            string[] tmpList = tagInfo.tagDecryptedInfo.Split(serialSep);
-            string strHeadType = tmpList[1].Substring(0, 2);
-            string strIntType = tmpList[1].Substring(2, 2);
-            string strVolume = tmpList[1].Substring(4, 4);
-            string strDate = tmpList[1].Substring(8, 4);
-            string strSupplier = tmpList[1].Substring(12, 2);
-
-            if(!Directory.Exists(path))
+            if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
 
-            if(File.Exists(path + "\\log.dat"))
-            {
-                File.Decrypt(path + "\\log.dat");
-            }
+            if (encryptedData == "")
+                return;
+
             try
             {
+#if LOG_ENCRYPTED
                 using (StreamWriter sw = File.AppendText(path + "\\log.dat"))
                 {
-                    DateTime localDate = DateTime.Now;
-                    sw.Write("{0},", localDate.ToString("MM/dd/yy HH:mm:ss"));
-                    sw.Write(tagInfo.label + "," + strHeadType + "," + strIntType + ",");
-                    sw.WriteLine(strVolume + "," + strDate + "," + strSupplier);
-                    File.Encrypt(path + "\\log.dat");
+                    sw.WriteLine(encryptedData);
+                    sw.Close();
                 }
-            }
+#else
+                using (StreamWriter sw = File.AppendText(path + "\\log.dat"))
+                {
+                    sw.WriteLine(inputData);
+                    sw.Close();
+                }
+#endif
+                }
             catch (Exception exp) { }
         }
 
-        public static bool checkAuthDateAndLog(string input)
-        {
-            //check serialNumber and dateTime
-            string[] dataArry = input.Split(serialSep);
+        //strAuthData
+        //DateTime, Serial number, dongle ID
+        public static int checkAuthDateAndLog(string strAuthData, string plaintext, int dayAllowed)
+        {//return 0, mean found the tag
+         //return -1, mean verified failed
+         //return 1, mean verified successful
+
             DateTime parsedDate = DateTime.Now;
             try
             {
-                parsedDate = DateTime.ParseExact(dataArry[0], "MMddyy", CultureInfo.InvariantCulture);
+                string[] authDataArry = strAuthData.Split(',');
+                string[] logArry = plaintext.Split(',');
+
+                if (string.Compare(authDataArry[1], logArry[1]) == 0)
+                    return 0;
+
+                parsedDate = DateTime.ParseExact(authDataArry[0], "MMddyy", CultureInfo.InvariantCulture);                
+                //DateTime.TryParse(authDataArry[0], out parsedDate);
+
+                DateTime ExpireDay = DateTime.Now.AddDays(dayAllowed);
+                string strExpireDate = ExpireDay.ToString("MMddyy");
+
+                if (ExpireDay < parsedDate)
+                    return -1;
+                else
+                    return 1;
             }
             catch (FormatException)
             {
-                return false;
-            }
-
-            DateTime ExpireDay = DateTime.Now.AddDays(1);
-            string strExpireDate = ExpireDay.ToString("MMddyy");
-
-            if (ExpireDay < parsedDate)
-                return false;
-                        
-            //string serialNumber = dataArry[1];
-            string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            if (File.Exists(path + "\\log.dat"))
-            {
-                using (StreamReader sr = File.OpenText(path + "\\log.dat"))
-                {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        string[] strArry = line.Split(',');
-                        if (strArry[1] == dataArry[1])
-                        {//tag has been use before
-                            return false;
-                        }
-                    }
-                }
-                return true;
-            }
-            return false;
+                return 0;
+            }           
         }
 
         public static bool verifyData(string inputData, bool bVerifyData, bool bRead2Erase)
@@ -316,15 +310,15 @@ namespace RFIDTag
                 return false;
             try
             {
-                if(bRead2Erase)
+                if (bRead2Erase)
                 {
                     ulong uData = 0;
-                    if(ulong.TryParse(inputData.Replace(" ", ""), out uData))
+                    if (ulong.TryParse(inputData.Replace(" ", ""), out uData))
                     {
                         if (uData == 0)
                             return true;
                     }
-                    return false;                       
+                    return false;
                 }
                 if (bVerifyData)
                 {
@@ -353,11 +347,7 @@ namespace RFIDTag
                     }
                 }
             }
-            catch(Exception exp)
-            {
-                Console.WriteLine("Read tag " + inputData + " got exception " + exp.Message);
-                return false;
-            }              
+            catch (Exception exp) { }           
             return false;
         }
 

@@ -4,17 +4,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading;
 //using System.Threading.Tasks;
 
 namespace RFIDService
 {
     public partial class RFIDService : ServiceBase
     {
-        RFIDMain RFIDmain = new RFIDMain();
+        RFIDMain RFIDmain;
         public RFIDService()
         {
             InitializeComponent();
@@ -54,8 +53,7 @@ namespace RFIDService
             }
             catch (InvalidOperationException e)
             {
-                Console.WriteLine("Could not stop the {0} service.", serviceName);
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Could not stop the {0} service.", serviceName);                
             }
         }
 
@@ -98,17 +96,16 @@ namespace RFIDService
             }
             catch (InvalidOperationException e)
             {
-                Console.WriteLine("Could not restart the {0} service.", serviceName);
-                Console.WriteLine(e.Message);
+                Trace.WriteLine("Could not restart the {0} service.", serviceName);
+                Trace.WriteLine(e.Message);
             }
         }
         */
         protected override void OnStart(string[] args)
-        { 
-            while(!RFIDmain.run())
-            {
-                Thread.Sleep(500);
-            }
+        {
+            this.AutoLog = true;
+            RFIDmain = new RFIDMain();
+            RFIDmain.checkComPort();
             StartService(this.ServiceName, 3000);            
         }
 

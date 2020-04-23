@@ -53,7 +53,7 @@ namespace RFIDTag
             return Convert.ToBase64String(aes.Key);
         }*/
 
-        public byte[] Encrypt(string plainText)//, byte[] Key)
+        public string Encrypt(string plainText)//, byte[] Key)
         {
             byte[] encrypted;
             byte[] iv = new byte[16];
@@ -86,11 +86,11 @@ namespace RFIDTag
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e.Message);
+                //Trace.WriteLine(e.Message);
                 return null;
             }
             // Return encrypted data    
-            return encrypted;
+            return Convert.ToBase64String(encrypted);
         }
 
         public bool IsBase64String(string s)
@@ -101,27 +101,35 @@ namespace RFIDTag
 
         public string DecryptData(byte[] cipherText)
         {
+            string plaintext = "";
             byte[] iv = new byte[16];
             //byte[] cipherText = new byte[32];
 
-            string plaintext = "";         
-            using (AesManaged aesTemp = new AesManaged())
+            if (cipherText.Length == 0)
+                return "";
+
+            try
             {
-                // Create a decryptor
-                aesTemp.IV = iv;
-                ICryptoTransform decryptor = aesTemp.CreateDecryptor(aes.Key, aesTemp.IV);
-                // Create the streams used for decryption.    
-                using (MemoryStream ms = new MemoryStream(cipherText))
+               
+                using (AesManaged aesTemp = new AesManaged())
                 {
-                    // Create crypto stream    
-                    using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                    // Create a decryptor
+                    aesTemp.IV = iv;
+                    ICryptoTransform decryptor = aesTemp.CreateDecryptor(aes.Key, aesTemp.IV);
+                    // Create the streams used for decryption.    
+                    using (MemoryStream ms = new MemoryStream(cipherText))
                     {
-                        // Read crypto stream    
-                        using (StreamReader reader = new StreamReader(cs))
-                            plaintext = reader.ReadToEnd();
+                        // Create crypto stream    
+                        using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                        {
+                            // Read crypto stream    
+                            using (StreamReader reader = new StreamReader(cs))
+                                plaintext = reader.ReadToEnd();
+                        }
                     }
                 }
             }
+            catch (Exception exp) { }
             return plaintext;
         }
 
@@ -147,7 +155,7 @@ namespace RFIDTag
                                                     inputPart2.Remove(inputPart2.Length-12));
                                 if (!IsBase64String(hex2Ascii))
                                 {
-                                    //Console.WriteLine("Format not support1 " + hex2Ascii);
+                                    //Trace.WriteLine("Format not support1 " + hex2Ascii);
                                     decState = decryptedState.SingleMemroy;
                                     continue;
                                 }                                                          
@@ -158,7 +166,7 @@ namespace RFIDTag
                                 hex2Ascii = RFIDTagInfo.HEXToASCII(inputPart2);                                    
                                 if (!IsBase64String(hex2Ascii))
                                 {
-                                    //Console.WriteLine("Format not support2 " + inputPart2);
+                                    //Trace.WriteLine("Format not support2 " + inputPart2);
                                     decState = decryptedState.CombinedMemory;
                                     return "";
                                 }                               
@@ -166,7 +174,7 @@ namespace RFIDTag
                             break;
                     }
 
-                    //Console.WriteLine("Read encrypted message " + hex2Ascii +
+                    //Trace.WriteLine("Read encrypted message " + hex2Ascii +
                     //                  ", decState = " + decState.ToString());
                     byte[] cipherText = System.Convert.FromBase64String(hex2Ascii);
                     plaintext = DecryptData(cipherText);

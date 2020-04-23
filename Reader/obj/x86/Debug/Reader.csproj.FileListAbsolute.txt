@@ -40,4 +40,3 @@ C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\bin\x86\Debug\Reader.pdb
 C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.csproj.CoreCompileInputs.cache
 C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.dll
 C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.pdb
-C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.csprojAssemblyReference.cache
