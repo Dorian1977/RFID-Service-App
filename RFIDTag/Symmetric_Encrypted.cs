@@ -129,7 +129,7 @@ namespace RFIDTag
                     }
                 }
             }
-            catch (Exception exp) { }
+            catch (Exception exp) { /*Trace.WriteLine("Get Exception " + exp.Message);*/ }
             return plaintext;
         }
 

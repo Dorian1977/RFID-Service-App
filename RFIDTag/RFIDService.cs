@@ -34,9 +34,10 @@ namespace RFIDService
                 service.Start();
                 service.WaitForStatus(ServiceControllerStatus.Running, timeout);
             }
-            catch
+            catch (InvalidOperationException e)
             {
                 // ...
+                Trace.WriteLine("Could not start the {0} service.", serviceName);
             }
         }
         
@@ -53,7 +54,7 @@ namespace RFIDService
             }
             catch (InvalidOperationException e)
             {
-                Console.WriteLine("Could not stop the {0} service.", serviceName);                
+                Trace.WriteLine("Could not stop the {0} service.", serviceName);                
             }
         }
 
@@ -106,13 +107,13 @@ namespace RFIDService
             this.AutoLog = true;
             RFIDmain = new RFIDMain();
             RFIDmain.checkComPort();
-            StartService(this.ServiceName, 3000);            
+            StartService(this.ServiceName, 10000);            
         }
 
         protected override void OnStop()
         {
             RFIDmain.RFIDStop();
-            StopService(this.ServiceName, 3000);            
+            StopService(this.ServiceName, 10000);            
         }
 
         protected override void OnShutdown()

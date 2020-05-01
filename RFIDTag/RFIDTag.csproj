@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>RFIDTag</RootNamespace>
     <AssemblyName>RFIDTag</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -26,10 +26,13 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>RFID tag authorization</ProductName>
     <PublisherName>Pack Smart Inc.</PublisherName>
+    <SuiteName>RFIDTag</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
@@ -44,6 +47,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -67,10 +71,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>B659007B6EFD45F0D0F054961D865746CA34CBBE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>BEA6D6CE11AC8DDA5C277735970AE7052E844DEE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>RFIDTag_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>RFIDTag_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -80,7 +84,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>RFID.ico</ApplicationIcon>
@@ -94,7 +98,8 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -106,9 +111,11 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <WarningLevel>2</WarningLevel>
     <DocumentationFile>bin\x86\Release\RFIDTag.xml</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -121,13 +128,14 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlowFish.cs" />
     <Compile Include="BlowFishImpl.cs" />
     <Compile Include="CCommondMethod.cs" />
+    <Compile Include="EmbeddedAssembly.cs" />
     <Compile Include="InventoryBuffer.cs" />
     <Compile Include="OperateTagBuffer.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -161,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="app.manifest" />
     <None Include="Properties\AccessCode.dat" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\LabelFormat.dat" />
@@ -169,7 +178,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Properties\SymmetricKey.dat" />
-    <None Include="RFIDTag_1_TemporaryKey.pfx" />
+    <None Include="RFIDTag_2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">
@@ -179,6 +188,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -195,11 +205,6 @@
     <Content Include="RFID.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlowFishClassLibrary\BlowFishClassLibrary.vcxproj">
-      <Project>{9fe25130-4c87-4249-8326-410f93e7871a}</Project>
-      <Name>BlowFishClassLibrary</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </ProjectReference>
     <ProjectReference Include="..\Reader\Reader.csproj">
       <Project>{26b6aaee-3512-42d9-835e-ea9b4a699cb4}</Project>
       <Name>Reader</Name>

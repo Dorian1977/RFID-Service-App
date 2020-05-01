@@ -1,8 +1,0 @@
-﻿  pch.cpp
-  AssemblyInfo.cpp
-  BlowFish.cpp
-  BlowFishClassLibrary.cpp
-  Generating Code...
-  .NETFramework,Version=v4.0.AssemblyAttributes.cpp
-  AssemblyInfo.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  BlowFishClassLibrary.vcxproj -> C:\Users\dyeh\source\repos\RFID ConsoleApp\x64\Debug\BlowFishClassLibrary.dll

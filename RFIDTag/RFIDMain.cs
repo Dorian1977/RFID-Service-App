@@ -23,8 +23,13 @@ namespace RFIDTag
         OperateTagBuffer m_curOperateTagBuffer = new OperateTagBuffer();
         Symmetric_Encrypted symmetric = new Symmetric_Encrypted();
 
-        const short m_nRealRate = 3; //20;
-        const short rwTagDelay = 300; //80ms 3-5 failed, 90ms 2-3 failed, 100ms 2-10 failed
+        const short m_nRealRate = 3;
+        const short rwTagDelay = 300;
+        const string inkFile = "\\AEWA\\APRINT\\pIsNmK_a40670.dat"; //C:\ProgramData
+        const string inkAuthFile = "\\inkAuthorization.dat";        //C:\ProgramData
+        const string inkLogFolder = "\\RFIDTag";                    //C:\ProgramData
+        const string inkLogFile = "\\RFIDTrace.log";                //C:\ProgramData\RFIDTag
+        const string RFIDlogFile = "\\log.dat";                     //C:\ProgramData\RFIDTag
 
         //authorization ink time stamp 1 days allowed
         //also record in log file, and verified it everytime read it
@@ -44,9 +49,7 @@ namespace RFIDTag
         static LEDStatus resetGreenLED = LEDStatus.GreenOff;
         static LEDStatus resetRedLED = LEDStatus.RedOff;
         static int iComPortStatus = 0;
-        
-        //public TextWriterTraceListener myListener;// = new TextWriterTraceListener(File.Create("RFIDTag1.log"), "myListener");
-        //ConsoleTraceListener myListener = new ConsoleTraceListener(true);
+        string logFolder = "";
 
         enum LEDStatus
         {
@@ -73,23 +76,36 @@ namespace RFIDTag
 
         public RFIDMain()
         {
+            //init and add reader callback 
             reader = new Reader.ReaderMethod();
             reader.AnalyCallback = AnalyData;
-            //myListener = new TextWriterTraceListener("./RFIDTag.log", "myListener");
-            Trace.Listeners.Add(new TextWriterTraceListener("./RFIDTag.log", "RFIDListener"));
-            Trace.AutoFlush = true;
 
-            Trace.WriteLine("Test message.1");
-            Trace.WriteLine("Test message.2");
-            Console.WriteLine("Test message.3");
-           
+            try
+            {
+                //add RFID authorization log
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+                logFolder = path + inkLogFolder;
 
+                SetFolderPermission(logFolder);
+
+                //add trace log here
+                Trace.Listeners.Add(new TextWriterTraceListener(logFolder+ inkLogFile, "myListener"));
+                Trace.AutoFlush = true;
+
+                Trace.WriteLine("Path: " + path);
+                RFIDTagInfo.loadFilePath(path, inkLogFolder + RFIDlogFile, inkFile, inkAuthFile);       
+            }
+            catch (Exception exp) { Trace.WriteLine("Got Exception " + exp.Message); }
+
+            //start reader scan tag thread
             StartThread();
         }
 
         public void RFIDStop()
         {
             Trace.Flush();
+            Trace.Close();
+            Trace.Listeners.Clear();
             setLEDstaus(LEDStatus.Off);
             setLEDstaus(LEDStatus.Off);
 
@@ -133,7 +149,7 @@ namespace RFIDTag
                 m_nReceiveFlag_3s++;
 
                 if(bSendComPort == true)
-                {//no respond
+                {//no respond from Reader, for 2nd and more unplug
                     firmwareRetry++;
                 }
                 else
@@ -143,7 +159,7 @@ namespace RFIDTag
                 }
 
                 if (iComPortStatus != 1)
-                {
+                {//com port connect failed
                     checkComPort();
                 }
                 else
@@ -167,13 +183,63 @@ namespace RFIDTag
             }
 
             if (m_nReceiveFlag_3s > 3)
-            {
-                if (File.Exists(RFIDTagInfo.readinkAuthFile()))
+            {//C:\\ProgramData\InkAuth...
+                if (File.Exists(RFIDTagInfo.readinkAuthFilePath()))
                 {
-                    Trace.WriteLine("File found readinkAuthFile");
+                    //Trace.WriteLine("File found readinkAuthFile");
                     checkAuthFile();                    
                 }
                 m_nReceiveFlag_3s = 0;
+                addLog();
+            }
+        }
+
+        void addLog()
+        {
+            //check and updata log file
+            FileInfo fi = new FileInfo(logFolder + inkLogFile);
+            if ((File.Exists(logFolder + inkLogFile)) && (fi.Length / 1024 / 1024 > 5))
+            {
+                string[] fileEntries = Directory.GetFiles(logFolder);
+                DateTime lastModified = new DateTime();
+                string lastModifiedFile = "";
+                int index = -1;
+                foreach (string fileName in fileEntries)
+                {
+                    if (fileName.Contains("RFIDTrace") &&
+                        int.TryParse(fileName.Substring(fileName.Length - 5, 1), out index))
+                    {
+                        if (lastModified < File.GetLastWriteTime(fileName))
+                        {
+                            lastModified = File.GetLastWriteTime(fileName);
+                            lastModifiedFile = fileName;
+                            fi = new FileInfo(fileName);
+                            if (fi.Length / 1024 / 1024 > 5)
+                            {
+                                if (index >= 6)
+                                {
+                                    index = 0;
+                                }
+                                else if (index >= 0 && index < 6)
+                                {
+                                    index++;
+                                }
+                            }
+                        }
+                    }
+                }
+                lastModifiedFile = logFolder + "\\RFIDTrace" + index.ToString() + ".log";
+                Trace.Flush();
+
+                if (File.Exists(lastModifiedFile))
+                    File.Delete(lastModifiedFile);
+
+                File.Copy(logFolder + inkLogFile, lastModifiedFile);
+                Trace.Close();
+                Trace.Listeners.Clear();
+                File.Delete(logFolder + inkLogFile);
+                Trace.Listeners.Add(new TextWriterTraceListener(logFolder + inkLogFile, "myListener"));
+                Trace.AutoFlush = true;
             }
         }
 
@@ -195,6 +261,8 @@ namespace RFIDTag
 
             if(iComPortStatus == 1)
             {
+                DateTime dateTimeNow = DateTime.Now;
+                Trace.WriteLine("Message start: " + dateTimeNow.ToString());
                 Trace.WriteLine("Com port found, Load setting");
                 //Trace.WriteLine("Com port found, Load setting");
                 loadSetting();
@@ -208,68 +276,75 @@ namespace RFIDTag
         public void checkAuthFile()
         {//read from encrypted log file and compare
             string strAuthData = "";
-
             try
             {
-                using (StreamReader sr = File.OpenText(RFIDTagInfo.readinkAuthFile()))
+                using (StreamReader sr = File.OpenText(RFIDTagInfo.readinkAuthFilePath()))
                 {
                     string line = sr.ReadLine();
                     strAuthData = symmetric.DecryptData(Convert.FromBase64String(line));
                     sr.Close();
                 }
-                Trace.WriteLine("Read data " + strAuthData);
-
-                //log file read
-                string strLogpath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-                if (strAuthData != "" && File.Exists(strLogpath + "\\RFIDTag\\log.dat"))
+                
+                if (strAuthData != "")
                 {
-                    int ret = -1;
-                    using (StreamReader sr = File.OpenText(strLogpath + "\\RFIDTag\\log.dat"))
+                    string[] authDataArry = strAuthData.Split(',');
+                    if (RFIDTagInfo.checkAuthDate(authDataArry[0], dayAllowed) == 1)
                     {
-                        string line;
-
-                        while ((line = sr.ReadLine()) != null)
+                        if (File.Exists(RFIDTagInfo.readLogFilePath()))
                         {
-                            if (line == "")
-                                continue;
-
-                            string plaintext = symmetric.DecryptData(System.Convert.FromBase64String(line));
-                            Trace.WriteLine("Compare " + plaintext + " vs " + strAuthData);
-
-                            ret = RFIDTagInfo.checkAuthDateAndLog(strAuthData, plaintext, dayAllowed);
-                            if (ret == 0)
+                            FileInfo fi = new FileInfo(RFIDTagInfo.readLogFilePath());
+                            if (fi.Length != 0)
                             {
-                                Trace.WriteLine("*** Tag existed ***");
-                                //setLEDstaus(LEDStatus.GreenOff);
-                                setLEDstaus(LEDStatus.Red);
-                                File.Delete(RFIDTagInfo.readinkAuthFile());
-                                break;
+                                using (StreamReader sr = File.OpenText(RFIDTagInfo.readLogFilePath()))
+                                {
+                                    string line;
+                                    while ((line = sr.ReadLine()) != null)
+                                    {
+                                        if (line == "")
+                                            continue;
+
+                                        string plaintext = symmetric.DecryptData(System.Convert.FromBase64String(line));                                   
+                                        string[] logArry = plaintext.Split(',');
+
+                                        if (string.Compare(authDataArry[1], logArry[1]) == 0)
+                                        {
+                                            Trace.WriteLine("*** Tag existed ***");
+                                            setLEDstaus(LEDStatus.Red);
+                                            //File.Delete(RFIDTagInfo.readinkAuthFilePath());                                           
+                                            return;
+                                        }
+                                    }
+                                    sr.Close();
+                                }
                             }
-                        }
-                        sr.Close();
-                        if (ret == 1)
-                        {//add to log and ink increase                        
-                            File.Delete(RFIDTagInfo.readinkAuthFile());
-                            if (!File.Exists(RFIDTagInfo.readinkAuthFile()))
-                            {
-                                string[] tmpArr = strAuthData.Split(',');
-                                RFIDTagInfo.addLog(symmetric.Encrypt(RFIDTagInfo.getLogData(false, tmpArr[1])));
-                                RFIDTagInfo.addTempInkAuth();
-                                Trace.WriteLine("*** Add Ink from file ***");
+                        }                        
+                        
+                        string encryptData = symmetric.Encrypt(
+                                                RFIDTagInfo.getLogData(false, authDataArry[1]));
 
+                        UInt32 inkVolumeFromFile = Convert.ToUInt32(authDataArry[2]);
+                        UInt32 dongleIDFromFile = Convert.ToUInt32(authDataArry[3]);
+                        if (RFIDTagInfo.addVolumeToFile(inkVolumeFromFile, dongleIDFromFile, true))
+                        {
+                            if (RFIDTagInfo.addLog(encryptData))
+                            {
+                                Trace.WriteLine("*** Add Ink from file ***");
+                                File.Delete(RFIDTagInfo.readinkAuthFilePath());
                                 if (iComPortStatus == 1)
                                 {
-                                    //setLEDstaus(LEDStatus.RedOff);
-                                    //setLEDstaus(LEDStatus.Green);
+                                    setLEDstaus(LEDStatus.RedOff);
+                                    setLEDstaus(LEDStatus.Green);
                                     setLEDstaus(LEDStatus.Green);
                                 }
                             }
-                        }
+                        }                        
+                        
                     }
                 }
-
             }
-            catch (Exception exp) { }
+            catch (Exception exp) { 
+                Trace.WriteLine("Get Exception " + exp.Message);
+            }
         }
 
         public void checkPort(string comPort)
@@ -279,14 +354,12 @@ namespace RFIDTag
             int nRet = reader.OpenCom(comPort, Convert.ToInt32("115200"), out strException);
             if (nRet != 0)
             {
-                string strLog = "Connection failed, failure cause: " + strException;
-                Trace.WriteLine(strLog);
+                Trace.WriteLine("Connection failed, failure cause: " + strException);
                 return;
             }
             else
             {
-                string strLog = "Connect " + comPort + "@" + "115200";
-                Trace.WriteLine(strLog);
+                Trace.WriteLine("Connect " + comPort + "@" + "115200");
             }
             Thread.Sleep(rwTagDelay);
             reader.resetCom();
@@ -296,18 +369,34 @@ namespace RFIDTag
             Thread.Sleep(rwTagDelay*3);
         }
 
+        public static void SetFolderPermission(string folderPath)
+        {
+            if (!Directory.Exists(folderPath))
+            {
+                System.Security.AccessControl.DirectorySecurity dirSecurity =
+                            new System.Security.AccessControl.DirectorySecurity();
+                dirSecurity.AddAccessRule(
+                    new System.Security.AccessControl.FileSystemAccessRule("Everyone",
+                    System.Security.AccessControl.FileSystemRights.FullControl,
+                    System.Security.AccessControl.InheritanceFlags.ContainerInherit |
+                    System.Security.AccessControl.InheritanceFlags.ObjectInherit,
+                    System.Security.AccessControl.PropagationFlags.None,
+                    System.Security.AccessControl.AccessControlType.Allow)
+                );
+                // Create the new folder with the custom ACL.
+                Directory.CreateDirectory(folderPath, dirSecurity);
+            }
+            DirectoryInfo info = new DirectoryInfo(folderPath);
+            info.Attributes = FileAttributes.Hidden;
+        }
+
         public void loadSetting()
         { //R2000UartDemo_Load //C:\ProgramData
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-
-            RFIDTagInfo.loadVolumeFilePath(path + "\\AEWA\\APRINT\\pIsNmK_a40670.dat");
-            RFIDTagInfo.loadinkAuthFilePath(path + "\\inkAuthorization.dat");
-            
             //load Access Code
             byte[] accessCode = Properties.Resources.AccessCode;
             string strCode = RFIDTagInfo.ASCIIToHex(Encoding.ASCII.GetString(accessCode)).ToUpper();
             symmetric.loadAccessCode(strCode);
-            Trace.WriteLine("Read Access code " + strCode);
+            //Trace.WriteLine("Read Access code " + strCode);
 
             //load key
             byte[] encryptKey = Properties.Resources.SymmetricKey;
@@ -365,7 +454,6 @@ namespace RFIDTag
                 m_curSetting.btReadId = msgTran.ReadId;
 
                 iComPortStatus = 1;
-                //RefreshReadSetting(msgTran.Cmd);
                 //Trace.WriteLine(strCmd);
                 Trace.WriteLine("Get firmware version " + 
                                   m_curSetting.btMajor.ToString() + "." +
@@ -382,89 +470,6 @@ namespace RFIDTag
             }
 
             iComPortStatus = -1;
-            string strLog = strCmd + "Failure, failure cause: " + strErrorCode;
-            Trace.WriteLine(strLog);
-        }
-
-        void ProcessGetOutputPower(Reader.MessageTran msgTran)
-        {
-            string strCmd = "Get RF Output Power";
-            string strErrorCode = string.Empty;
-
-            if (msgTran.AryData.Length == 1)
-            {
-                m_curSetting.btReadId = msgTran.ReadId;
-                m_curSetting.btOutputPower = msgTran.AryData[0];
-
-                //RefreshReadSetting(0x77);
-                m_curSetting.btOutputPower = 0;
-                m_curSetting.btOutputPowers = null;
-                //Trace.WriteLine(strCmd);
-                return;
-            }
-            else if (msgTran.AryData.Length == 8)
-            {
-                m_curSetting.btReadId = msgTran.ReadId;
-                m_curSetting.btOutputPowers = msgTran.AryData;
-
-                //RefreshReadSetting(0x97);
-                //Trace.WriteLine(strCmd);
-                return;
-            }
-            else if (msgTran.AryData.Length == 4)
-            {
-                m_curSetting.btReadId = msgTran.ReadId;
-                m_curSetting.btOutputPowers = msgTran.AryData;                 
-
-                //RefreshReadSetting(0x77);
-                //Trace.WriteLine(strCmd);
-                return;
-            }
-            else
-            {
-                strErrorCode = "Unknown Error";
-            }
-
-            string strLog = strCmd + "Failure, failure cause: " + strErrorCode;
-            Trace.WriteLine(strLog);
-        }
-
-        void ProcessGetFrequencyRegion(Reader.MessageTran msgTran)
-        {
-            string strCmd = "Query RF frequency spectrum    ";
-            string strErrorCode = string.Empty;
-
-            if (msgTran.AryData.Length == 3)
-            {
-                m_curSetting.btReadId = msgTran.ReadId;
-                m_curSetting.btRegion = msgTran.AryData[0];
-                m_curSetting.btFrequencyStart = msgTran.AryData[1];
-                m_curSetting.btFrequencyEnd = msgTran.AryData[2];
-
-                //RefreshReadSetting(0x79);
-                //Trace.WriteLine(strCmd);
-                return;
-            }
-            else if (msgTran.AryData.Length == 6)
-            {
-                m_curSetting.btReadId = msgTran.ReadId;
-                m_curSetting.btRegion = msgTran.AryData[0];
-                m_curSetting.btUserDefineFrequencyInterval = msgTran.AryData[1];
-                m_curSetting.btUserDefineChannelQuantity = msgTran.AryData[2];
-                m_curSetting.nUserDefineStartFrequency = msgTran.AryData[3] * 256 * 256 + msgTran.AryData[4] * 256 + msgTran.AryData[5];
-                //RefreshReadSetting(0x79);
-                //Trace.WriteLine(strCmd);
-                return;
-            }
-            else if (msgTran.AryData.Length == 1)
-            {
-                strErrorCode = CCommondMethod.FormatErrorCode(msgTran.AryData[0]);
-            }
-            else
-            {
-                strErrorCode = "Unknown Error";
-            }
-
             string strLog = strCmd + "Failure, failure cause: " + strErrorCode;
             Trace.WriteLine(strLog);
         }
@@ -507,11 +512,8 @@ namespace RFIDTag
 
                     if (m_curInventoryBuffer.bLoopInventoryReal)
                     {
-                        //m_bLockTab = true;
-                        //btnInventory.Enabled = false;
                         if (m_curInventoryBuffer.bLoopCustomizedSession)
                         {
-                            //reader.CustomizedInventory(m_curSetting.btReadId, m_curInventoryBuffer.btSession, m_curInventoryBuffer.btTarget, m_curInventoryBuffer.btRepeat); 
                             reader.CustomizedInventoryV2(m_curSetting.btReadId, m_curInventoryBuffer.CustomizeSessionParameters.ToArray());
                         }
                         else
@@ -529,65 +531,15 @@ namespace RFIDTag
                 {
                     m_curInventoryBuffer.nCommond = 0;
                     m_curInventoryBuffer.nIndexAntenna++;
-
-                    //byte btWorkAntenna = 0; //m_curInventoryBuffer.lAntenna[m_curInventoryBuffer.nIndexAntenna];
-                    //reader.SetWorkAntenna(m_curSetting.btReadId, btWorkAntenna); 
-                    //m_curSetting.btWorkAntenna = btWorkAntenna;
                 }
             }
             else if (m_curInventoryBuffer.bLoopInventory)
             {//enter here
                 m_curInventoryBuffer.nIndexAntenna = 0;
                 m_curInventoryBuffer.nCommond = 0;
-
-                //byte btWorkAntenna = 0; // m_curInventoryBuffer.lAntenna[m_curInventoryBuffer.nIndexAntenna];
-                //reader.SetWorkAntenna(m_curSetting.btReadId, btWorkAntenna);
-                //m_curSetting.btWorkAntenna = btWorkAntenna;
             }            
             Thread.Sleep(10);
-        }
-
-        void ProcessSetWorkAntenna(Reader.MessageTran msgTran)
-        {
-            int intCurrentAnt = 0;
-            intCurrentAnt = m_curSetting.btWorkAntenna + 1;
-            string strCmd = "Set working antenna successfully, Current Ant: Ant" + intCurrentAnt.ToString();
-
-            string strErrorCode = string.Empty;
-
-            if (msgTran.AryData.Length == 1)
-            {
-                if (msgTran.AryData[0] == 0x10)
-                {
-                    m_curSetting.btReadId = msgTran.ReadId;
-                    //Trace.WriteLine(strCmd);
-
-                    if (m_bInventory)
-                    {
-                        RunLoopInventroy();
-                    }
-                    return;
-                }
-                else
-                {
-                    strErrorCode = CCommondMethod.FormatErrorCode(msgTran.AryData[0]);
-                }
-            }
-            else
-            {
-                strErrorCode = "Unknown Error";
-            }
-
-            string strLog = strCmd + "Failure, failure cause: " + strErrorCode;
-            Trace.WriteLine(strLog);
-
-            if (m_bInventory)
-            {
-                m_curInventoryBuffer.nCommond = 1;
-                m_curInventoryBuffer.dtEndInventory = DateTime.Now;
-                RunLoopInventroy();
-            }
-        }
+        }  
 
         void AnalyData(Reader.MessageTran msgTran)
         {
@@ -603,16 +555,7 @@ namespace RFIDTag
                 case 0x72:
                     ProcessGetFirmwareVersion(msgTran);
                     break;
-                case 0x74:
-                    ProcessSetWorkAntenna(msgTran);
-                    break;
-                case 0x97:
-                case 0x77:
-                    ProcessGetOutputPower(msgTran);
-                    break;
-                case 0x79:
-                    ProcessGetFrequencyRegion(msgTran);
-                    break;
+
                 case 0x61:
                     ProcessWriteGpioValue(msgTran);
                     break;
@@ -638,8 +581,8 @@ namespace RFIDTag
                                         reader.ReadTag(m_curSetting.btReadId, 3, 0, 22, null); //btAryPwd);
                                         break;
                                 }                                                         
-                                Trace.WriteLine("Read Tag retry (" + readTagRetry + "), state " + 
-                                                  tagState.ToString());
+                                //Trace.WriteLine("Read Tag retry (" + readTagRetry + "), state " + 
+                                //                  tagState.ToString());
                                 Thread.Sleep(rwTagDelay); //set to 20 will delay the respond
                                 break;
                             }
@@ -648,8 +591,7 @@ namespace RFIDTag
                                 Trace.WriteLine("Read tag failed" + ", state " +
                                                   tagState.ToString());
                                 readTagRetry = 0;
-                                setLEDstaus(LEDStatus.Red);
-                               
+                                setLEDstaus(LEDStatus.Red);                               
                             }   
                         }
                         else
@@ -659,8 +601,8 @@ namespace RFIDTag
                                 //Thread.Sleep(rwTagDelay);
                                 reader.ReadTag(m_curSetting.btReadId, 3, 0, 22, null); //btAryPwd);
                                 Thread.Sleep(rwTagDelay);
-                                Trace.WriteLine("Read Tag ok" +
-                                                  ", state " + tagState.ToString());
+                                //Trace.WriteLine("Read Tag ok" +
+                                //                  ", state " + tagState.ToString());
                             }
                             readTagRetry = 0;
                         }
@@ -683,8 +625,8 @@ namespace RFIDTag
                                 if (writeZeroTag(3, 0, 22) != 0)
                                     bWriteSuccess = false;
 
-                                Trace.WriteLine("Write Tag retry " + writeTagRetry +
-                                    ", state " + tagState.ToString());
+                                //Trace.WriteLine("Write Tag retry " + writeTagRetry +
+                                //    ", state " + tagState.ToString());
                                 Thread.Sleep(rwTagDelay);
                                 break;
                             }
@@ -698,8 +640,8 @@ namespace RFIDTag
                         }
                         else
                         {
-                            Trace.WriteLine("Write Tag successful" +
-                                ", state " + tagState.ToString());
+                            //Trace.WriteLine("Write Tag successful" +
+                            //    ", state " + tagState.ToString());
                             writeTagRetry = 0;
                         }
 #if READ2SCAN
@@ -753,7 +695,7 @@ namespace RFIDTag
                     {
                         WriteLEDGPIO(m_curSetting.btReadId, 0x04, 0);
                         m_curSetting.btGpio4Value = 0;
-                        Trace.WriteLine("LED Green OFF ");
+                        //Trace.WriteLine("LED Green OFF ");
                         resetGreenLED = ledStatus;
                     }
                     return;
@@ -761,7 +703,7 @@ namespace RFIDTag
                     {
                         WriteLEDGPIO(m_curSetting.btReadId, 0x03, 0);
                         m_curSetting.btGpio3Value = 0;
-                        Trace.WriteLine("LED Red OFF, ");
+                        //Trace.WriteLine("LED Red OFF, ");
                         resetRedLED = ledStatus;
                     }
                     return;
@@ -771,7 +713,7 @@ namespace RFIDTag
                         {
                             WriteLEDGPIO(m_curSetting.btReadId, 0x04, 0);
                             m_curSetting.btGpio4Value = 0;
-                            Trace.Write("LED Green OFF ");
+                            //Trace.Write("LED Green OFF ");
                             resetGreenLED = LEDStatus.Off;
                             Thread.Sleep(rwTagDelay);
                         }
@@ -779,7 +721,7 @@ namespace RFIDTag
                         {
                             WriteLEDGPIO(m_curSetting.btReadId, 0x03, 0);
                             m_curSetting.btGpio3Value = 0;
-                            Trace.WriteLine("LED Red OFF, ");
+                            //Trace.WriteLine("LED Red OFF, ");
                             resetRedLED = LEDStatus.RedOff;
                         }
                     }
@@ -793,7 +735,7 @@ namespace RFIDTag
                             resetGreenLED = LEDStatus.GreenOff;
                             WriteLEDGPIO(m_curSetting.btReadId, 0x04, 0);
                             Thread.Sleep(rwTagDelay);
-                            Trace.Write("LED Green Off, ");
+                            //Trace.Write("LED Green Off, ");
                         }
                         WriteLEDGPIO(m_curSetting.btReadId, 0x03, 1);
                         m_curSetting.btGpio3Value = 1;
@@ -803,15 +745,6 @@ namespace RFIDTag
                     break;
                 case LEDStatus.Green:
                     {
-                       // if((m_curSetting.btGpio3Value == 1) ||
-                       //    (resetGreenLED == LEDStatus.Red))
-                        {
-                            m_curSetting.btGpio3Value = 0;
-                            resetRedLED = LEDStatus.RedOff;
-                            WriteLEDGPIO(m_curSetting.btReadId, 0x03, 0);
-                            Thread.Sleep(rwTagDelay);
-                            Trace.Write("LED Red Off, ");
-                        }
                         WriteLEDGPIO(m_curSetting.btReadId, 0x04, 1);
                         m_curSetting.btGpio4Value = 1;
                         Trace.WriteLine("LED Green ON ");
@@ -824,20 +757,20 @@ namespace RFIDTag
                         {
                             WriteLEDGPIO(m_curSetting.btReadId, 0x03, 0);
                             m_curSetting.btGpio3Value = 0;
-                            Trace.Write("LED Red OFF, ");
+                            //Trace.Write("LED Red OFF, ");
                             resetRedLED = LEDStatus.RedOff;
                             Thread.Sleep(rwTagDelay);
                         }
 
                         m_curSetting.btGpio4Value = 1;
                         WriteLEDGPIO(m_curSetting.btReadId, 0x04, 1);                       
-                        Trace.Write("LED Green ON, ");
+                        //Trace.Write("LED Green ON, ");
                         Thread.Sleep(rwTagDelay);
 
                         m_curSetting.btGpio4Value = 0;
                         resetGreenLED = LEDStatus.GreenOff;
                         WriteLEDGPIO(m_curSetting.btReadId, 0x04, 0);
-                        Trace.WriteLine("LED Green OFF ");
+                        //Trace.WriteLine("LED Green OFF ");
                     }
                     break;
             }            
@@ -877,7 +810,7 @@ namespace RFIDTag
                 }
                 else
                 {//re-erase tag                    
-                    Trace.WriteLine("Verified Erase data failed, " + data);
+                    Trace.WriteLine("Verified Erase data failed, id " + tagInfo.label);
                 }
                 return;
             }
@@ -890,7 +823,7 @@ namespace RFIDTag
                 if (RFIDTagInfo.verifyData(decryptMsg, true, false))
                 {
                     tagState = readTagStatus.VerifiedSuccessful;
-                    Trace.WriteLine("Verified data successful, " + decryptMsg);
+                    //Trace.WriteLine("Verified data successful, " + decryptMsg);
                 }
                 else
                 {
@@ -919,7 +852,11 @@ namespace RFIDTag
                 if (msgTran.AryData.Length == 1)
                 {
                     strErrorCode = CCommondMethod.FormatErrorCode(msgTran.AryData[0]);
-                    Trace.WriteLine(strCmd + " Failure, read tag failure cause1: " + strErrorCode);
+
+                    if (tagState != readTagStatus.ReadReserve)
+                    {
+                        Trace.WriteLine(strCmd + " Failure, read tag failure cause1: " + strErrorCode);
+                    }
                     return false;
                 }
                 else
@@ -946,11 +883,6 @@ namespace RFIDTag
                             break;
                         }
                     }
-
-                    //Trace.WriteLine("Read data " + strData + 
-                    //                  " state " + tagState.ToString());
-                    //tagInfo.label = RFIDTagInfo.readEPCLabel(strEPC);                                  
-
                     //read data section
                     try
                     {
@@ -962,11 +894,15 @@ namespace RFIDTag
                                 {
                                     //1. Erase verified success tag
                                     //2. add ink volume
-                                    RFIDTagInfo.addLog(symmetric.Encrypt(RFIDTagInfo.getLogData(true, "")));
-                                    
-                                    setLEDstaus(LEDStatus.Green); //green on
-                                    tagInfo.bVerified = true;
-                                    tagState = readTagStatus.ZeroData;
+                                    if (RFIDTagInfo.addLog(symmetric.Encrypt(RFIDTagInfo.getLogData(true, ""))))
+                                    {
+                                        setLEDstaus(LEDStatus.RedOff);
+                                        setLEDstaus(LEDStatus.Green); //green on
+                                        setLEDstaus(LEDStatus.Green); //green on
+                                        setLEDstaus(LEDStatus.Green); //green on
+                                        tagInfo.bVerified = true;
+                                        tagState = readTagStatus.ZeroData;
+                                    }
                                     break; // return true;
                                 }
 
@@ -974,8 +910,8 @@ namespace RFIDTag
                                 {
 #if READ2ERASE                                                                      
                                     string[] tempList = tagInfo.tagDecryptedInfo.Split(RFIDTagInfo.serialSep);
-                                    int intToneVolume = Int32.Parse(tempList[1].Substring(4, 4));
-                                    if(RFIDTagInfo.addVolumeToFile(intToneVolume))
+                                    UInt32 intToneVolume = Convert.ToUInt32(tempList[1].Substring(4, 4));
+                                    if(RFIDTagInfo.addVolumeToFile(intToneVolume, 0, false))
                                     {
                                         tagState = readTagStatus.Erasing;
                                         writeZeroTag(3, 0, 22);
@@ -989,13 +925,15 @@ namespace RFIDTag
                                     }
 #else
                                     string[] tempList = tagInfo.tagDecryptedInfo.Split(RFIDTagInfo.serialSep);
-                                    int intToneVolume = Int32.Parse(tempList[1].Substring(4, 4));
-                                    if (RFIDTagInfo.addVolumeToFile(intToneVolume))
+                                    UInt32 intToneVolume = Convert.ToUInt32(tempList[1].Substring(4, 4));
+                                    if (RFIDTagInfo.addVolumeToFile(intToneVolume, 0, false))
                                     {
-                                        RFIDTagInfo.addLog();
-                                        setLEDstaus(LEDStatus.Green); //green on
-                                        tagInfo.bVerified = true;
-                                        tagState = readTagStatus.ZeroData;
+                                        if (RFIDTagInfo.addLog(symmetric.Encrypt(RFIDTagInfo.getLogData(true, ""))))
+                                        {
+                                            setLEDstaus(LEDStatus.Green); //green on
+                                            tagInfo.bVerified = true;
+                                            tagState = readTagStatus.ZeroData;
+                                        }
                                     }
 #endif
                                     break; // return true;
@@ -1338,13 +1276,13 @@ namespace RFIDTag
                                     else if ((tagInfo.label == convertLabel) &&
                                              (tagInfo.bVerified || tagState == readTagStatus.Erasing))
                                     {//verified
-                                        Trace.Write("Fount same tag, Current state: " + tagState + " ");
+                                        //Trace.Write("Fount same tag, Current state: " + tagState + " ");
                                         goto Idle;
                                     }
                                     else if(tagInfo.label != convertLabel)
                                     {
                                         tagState = readTagStatus.Reading;
-                                        Trace.Write("Found new tag, Current state: " + tagState + " ");
+                                        //Trace.Write("Found new tag, Current state: " + tagState + " ");
                                         tagInfo.label = convertLabel;
                                         tagInfo.bVerified = false;
                                     }
@@ -1355,9 +1293,9 @@ namespace RFIDTag
 
                                     if (tagState == readTagStatus.Erasing)
                                     {
-                                        Trace.WriteLine("Erasing scanning repeating, tag" +
-                                            m_curOperateTagBuffer.strAccessEpcMatch + " state: " +
-                                            tagState.ToString());
+                                        //Trace.WriteLine("Erasing scanning repeating, tag" +
+                                        //    m_curOperateTagBuffer.strAccessEpcMatch + " state: " +
+                                        //    tagState.ToString());
 
                                         reader.ReadTag(m_curSetting.btReadId, 3, 0, 22, null); // btAryPwd);
                                         Thread.Sleep(rwTagDelay);
@@ -1365,7 +1303,7 @@ namespace RFIDTag
                                     }
 
                                     //symmetric.resetEncrypted();                                        
-                                    //tagInfo.HEXLabel = strEPC;
+                                    //tagInfo.HEXLabel = strEPC;                                  
                                     tagState = readTagStatus.ReadReserve;
                                     Trace.WriteLine("Scan found tag: " + strEPC + ", RSSI " + readRSSI);
 
@@ -1407,20 +1345,6 @@ namespace RFIDTag
 
                     Idle:
                         setLEDstaus(LEDStatus.Idle);
-                        /*
-                        //iLedOnCount = 0, iLedOffCount = 0;
-                        if (bGreenIdleOn)// && iLedOnCount++ > 3)
-                        {
-                            iLedOnCount = iLedOffCount = 0;
-                            bGreenIdleOn = false;
-                            setLEDstaus(LEDStatus.Green);
-                        }
-                        else if (!bGreenIdleOn)// && iLedOffCount++ > 3)
-                        {
-                            iLedOnCount = iLedOffCount = 0;
-                            bGreenIdleOn = true;
-                            setLEDstaus(LEDStatus.GreenOff);
-                        }*/
                     }
                     break;
 

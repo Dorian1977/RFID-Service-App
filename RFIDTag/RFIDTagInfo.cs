@@ -26,18 +26,21 @@ namespace RFIDTag
         private static ulong currentTonerVolume = 0; //1L = 1,000,000,000,000 pL
         private static string labelFormat = "";
         private static string tonerVolumeFile = "";
-        private static string inkAuthFile = "";       
-        public const char serialSep = '=';        
+        private static string inkAuthFile = "";
+        private static string inkLogFile = "";
+        private static string inkFolder = "";
+        public const char serialSep = '=';
+        public static UInt32 dongleID = 0;
         public static List<string> labelList = new List<string>();
         
-        public static void loadVolumeFilePath(string filePath)
+        public static void loadFilePath(string folder, string filePath, 
+                                        string fileInkFilePath, 
+                                        string fileAuthInk)
         {
-            tonerVolumeFile = filePath;
-        }
-
-        public static void loadinkAuthFilePath(string filePath)
-        {
-            inkAuthFile = filePath;
+            inkFolder = folder;
+            inkLogFile = folder + filePath;
+            tonerVolumeFile = folder + fileInkFilePath;
+            inkAuthFile = folder + fileAuthInk;
         }
 
         public static void loadLabelFormat(byte[] lableFormatBytes)
@@ -45,7 +48,12 @@ namespace RFIDTag
             labelFormat = Encoding.ASCII.GetString(lableFormatBytes);
         }
 
-        public static string readinkAuthFile()
+        public static string readLogFilePath()
+        {
+            return inkLogFile;
+        }
+
+        public static string readinkAuthFilePath()
         {
             return inkAuthFile;
         }
@@ -71,24 +79,14 @@ namespace RFIDTag
                     fileStream.Close();
                 }
     }
-            catch(Exception e)
+            catch(Exception exp)
             {
+                Trace.WriteLine("Get Exception " + exp.Message);
                 Thread.Sleep(500);
                 return false;
             }
             return true;
         }            
-
-        public static void addTempInkAuth()
-        {           
-            try
-            {
-                File.Delete(inkAuthFile);
-                addVolumeToFile(1000);
-            }
-            catch(Exception exp) { }
-        }
-
         protected static bool IsFileLocked(FileInfo file)
         {
             try
@@ -111,33 +109,39 @@ namespace RFIDTag
             return false;
         }
 
-        public static ulong readVolumeFile()
+        public static ulong readVolumeFile(out UInt32 dongleID)
         {
-            //read only   
+            //read only
+            UInt32 _dongleID = 0;
             var readData = default(byte[]);
             ulong tmpVolume = 0;
-            FileStream logFileStream = new FileStream(tonerVolumeFile,
-                                        FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            using (StreamReader sr = new StreamReader(logFileStream))
+            try
             {
-                using (var memstream = new MemoryStream())
+                FileStream logFileStream = new FileStream(tonerVolumeFile,
+                                            FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                using (StreamReader sr = new StreamReader(logFileStream))
                 {
-                    sr.BaseStream.CopyTo(memstream);
-                    readData = memstream.ToArray();
+                    using (var memstream = new MemoryStream())
+                    {
+                        sr.BaseStream.CopyTo(memstream);
+                        readData = memstream.ToArray();
+                    }
+                    // Clean up
+                    sr.Close();
+                    logFileStream.Close();
                 }
-                // Clean up
-                sr.Close();
-                logFileStream.Close();
-            }
 
-            if (readData.Length != 0)
-            {
-                tmpVolume = BlowFishImpl.decodeVolumeData(readData);
+                if (readData.Length != 0)
+                {
+                    tmpVolume = BlowFishImpl.decodeVolumeData(readData, out _dongleID);
+                }
             }
+            catch (Exception exp) { Trace.WriteLine("Read ink file got exception " + exp.Message); }
+            dongleID = _dongleID;
             return tmpVolume;
         }
 
-        public static bool addVolumeToFile(int intToneVolume)
+        public static bool addVolumeToFile(UInt32 intToneVolume, UInt32 dongleIDFromFile, bool bReadFile)
         {
             bool bWritedFile = false;
             try
@@ -145,12 +149,26 @@ namespace RFIDTag
              //2. read data inside
              //3. if read data is empty, write volume read from tag
              //4. if read data not empty, add the volume read from tag, if over max, set to max
-
-                byte[] defaultData = BlowFishImpl.encodeVolumeData((ulong)intToneVolume * 1000000000);
-                if (!File.Exists(tonerVolumeFile))
+                ulong tmpVolume = readVolumeFile(out dongleID);
+                if (bReadFile && (dongleIDFromFile != dongleID))
                 {
+                    Trace.WriteLine("*** Dongle ID did not matched");
+                    return false;
+                }
+
+                Trace.WriteLine("read Dongle ID " + dongleID);
+                byte[] defaultData = BlowFishImpl.encodeVolumeData((ulong)intToneVolume * 1000000000, dongleID);
+
+                if (!File.Exists(tonerVolumeFile))
+                {//create file first
                     bWritedFile = false;
-                    for(int i=0; i < 5 && !bWritedFile; i++)
+                    using (StreamWriter sw = File.CreateText(tonerVolumeFile))
+                    {
+                        sw.WriteLine("");
+                        sw.Close();
+                    }
+
+                    for (int i=0; i < 5 && !bWritedFile; i++)
                     {
                         bWritedFile = writeByteToFile(defaultData);
                         
@@ -164,7 +182,6 @@ namespace RFIDTag
                     return false;
                 }
 
-                ulong tmpVolume = readVolumeFile();
                 if (tmpVolume == 0)
                 {//empty file
                     bWritedFile = false;
@@ -174,8 +191,7 @@ namespace RFIDTag
 
                         if (bWritedFile)
                         {
-                            Trace.WriteLine("Ink file empty, write " +
-                                Encoding.Default.GetString(defaultData));
+                            Trace.WriteLine("Ink file empty, add " + intToneVolume.ToString() + "L");                           
                             return true;
                         }
                     }
@@ -183,7 +199,7 @@ namespace RFIDTag
                 else
                 {                    
                     currentTonerVolume = tmpVolume + (ulong)intToneVolume * 1000000000;
-                    Trace.WriteLine("Ink file read " + tmpVolume.ToString());
+                    Trace.Write("Ink file read " + currentTonerVolume.ToString() + " ");
 
                     if (currentTonerVolume > tonerMAXVolume)
                         currentTonerVolume = tonerMAXVolume;
@@ -191,18 +207,17 @@ namespace RFIDTag
                     bWritedFile = false;
                     for (int i = 0; i < 5 && !bWritedFile; i++)
                     {
-                        bWritedFile = writeByteToFile(BlowFishImpl.encodeVolumeData(currentTonerVolume));
+                        bWritedFile = writeByteToFile(BlowFishImpl.encodeVolumeData(currentTonerVolume, dongleID));
 
                         if (bWritedFile)
                         {
-                            Trace.WriteLine(", Ink file is update, write " +
-                                Encoding.Default.GetString(BlowFishImpl.encodeVolumeData(currentTonerVolume)));
+                            Trace.WriteLine("Ink file read, add " + currentTonerVolume.ToString() + "L");
                             return true;
                         }
                     }
                 }
             }
-            catch(Exception exp) { }
+            catch(Exception exp) { Trace.WriteLine("Get Exception " + exp.Message); }
             return false;
         }
 
@@ -234,30 +249,33 @@ namespace RFIDTag
             inputData = localDate.ToString("MM/dd/yy HH:mm:ss") + ",";
             inputData += tagLabel + "," + strHeadType + "," + strIntType + ",";
             inputData += strVolume + "," + strDate + "," + strSupplier + ",";
-            inputData += readVolumeFile().ToString();
+            inputData += readVolumeFile(out dongleID).ToString();
             return inputData;
         }
 
-        public static void addLog(string encryptedData)
+        public static bool addLog(string encryptedData)
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            path += "\\RFIDTag";
-
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-
             if (encryptedData == "")
-                return;
+                return false;
 
             try
             {
 #if LOG_ENCRYPTED
-                using (StreamWriter sw = File.AppendText(path + "\\log.dat"))
+                if (!File.Exists(inkLogFile))
                 {
-                    sw.WriteLine(encryptedData);
-                    sw.Close();
+                    using (StreamWriter sw = File.CreateText(inkLogFile))
+                    {
+                        sw.WriteLine(encryptedData);
+                        sw.Close();
+                    }
+                }
+                else
+                {
+                    using (StreamWriter sw = File.AppendText(inkLogFile))
+                    {
+                        sw.WriteLine(encryptedData);
+                        sw.Close();
+                    }
                 }
 #else
                 using (StreamWriter sw = File.AppendText(path + "\\log.dat"))
@@ -266,39 +284,32 @@ namespace RFIDTag
                     sw.Close();
                 }
 #endif
-                }
-            catch (Exception exp) { }
+                return true;
+            }
+            catch (Exception exp) {
+                Trace.WriteLine("Get Exception " + exp.Message);
+                return false;
+            }
         }
 
         //strAuthData
         //DateTime, Serial number, dongle ID
-        public static int checkAuthDateAndLog(string strAuthData, string plaintext, int dayAllowed)
+        public static int checkAuthDate(string strAuthDate, int dayAllowed)
         {//return 0, mean found the tag
          //return -1, mean verified failed
          //return 1, mean verified successful
-
             DateTime parsedDate = DateTime.Now;
             try
             {
-                string[] authDataArry = strAuthData.Split(',');
-                string[] logArry = plaintext.Split(',');
-
-                if (string.Compare(authDataArry[1], logArry[1]) == 0)
-                    return 0;
-
-                parsedDate = DateTime.ParseExact(authDataArry[0], "MMddyy", CultureInfo.InvariantCulture);                
-                //DateTime.TryParse(authDataArry[0], out parsedDate);
-
-                DateTime ExpireDay = DateTime.Now.AddDays(dayAllowed);
-                string strExpireDate = ExpireDay.ToString("MMddyy");
-
-                if (ExpireDay < parsedDate)
+                parsedDate = DateTime.ParseExact(strAuthDate, "MMddyy", CultureInfo.InvariantCulture);                
+                if (DateTime.Now > parsedDate)
                     return -1;
                 else
                     return 1;
             }
-            catch (FormatException)
+            catch (FormatException exp)
             {
+                Trace.WriteLine("Get Exception " + exp.Message);
                 return 0;
             }           
         }
@@ -323,7 +334,7 @@ namespace RFIDTag
                 if (bVerifyData)
                 {
                     string[] checkData = inputData.Split(RFIDTagInfo.serialSep);
-                    if (checkData[0].StartsWith("PS"))
+                    if (checkData[0].StartsWith(labelFormat.Replace('_',' ').Trim()))
                     {
                         return true;
                     }
@@ -335,7 +346,7 @@ namespace RFIDTag
                     {
                         if (inputData[i] != labelFormat[i])
                         {
-                            if (labelFormat[i] == '_')
+                            if (labelFormat[i] == labelFormat[labelFormat.Length-1])
                             {
                                 continue;
                             }
@@ -347,7 +358,7 @@ namespace RFIDTag
                     }
                 }
             }
-            catch (Exception exp) { }           
+            catch (Exception exp) { Trace.WriteLine("Get Exception " + exp.Message); }           
             return false;
         }
 
@@ -374,8 +385,9 @@ namespace RFIDTag
                 string EPSnumber = uEPCNumber.ToString("D20");
                 return EPClabel + EPSnumber; ;
             }
-            catch(Exception e)
+            catch(Exception exp)
             {
+                Trace.WriteLine("Get Exception " + exp.Message);
                 return "";
             }            
         }
