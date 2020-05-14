@@ -24,3 +24,7 @@ C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\Release\Reader.csproj.Core
 C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\Release\Reader.dll
 C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\Release\Reader.pdb
 C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\Release\Reader.csprojAssemblyReference.cache
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\bin\Release\Reader.dll
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\bin\Release\Reader.pdb
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\obj\Release\Reader.dll
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\obj\Release\Reader.pdb

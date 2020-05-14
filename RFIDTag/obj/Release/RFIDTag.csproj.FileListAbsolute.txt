@@ -30,3 +30,19 @@ C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.applicati
 C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.csproj.CopyComplete
 C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.exe
 C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.pdb
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\Release\RFIDTag.exe.config
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\Release\RFIDTag.exe.manifest
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\Release\RFIDTag.application
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\Release\RFIDTag.exe
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\Release\RFIDTag.pdb
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\Release\Reader.dll
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\Release\Reader.pdb
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.csprojResolveAssemblyReference.cache
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.ProjectInstaller.resources
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.Properties.Resources.resources
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.csproj.GenerateResource.Cache
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.TrustInfo.xml
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.exe.manifest
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.application
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.exe
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Release\RFIDTag.pdb

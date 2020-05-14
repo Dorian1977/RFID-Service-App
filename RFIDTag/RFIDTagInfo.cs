@@ -375,19 +375,20 @@ namespace RFIDTag
             return sb.ToString();
         }
 
-        public static string readEPCLabel(string strEPC)
+        public static string readEPCLabel(string strEPC, out ulong uEPCNumber)
         {
             try
             {
                 string EPClabel = RFIDTagInfo.HEXToASCII(strEPC.Substring(0, 6).ToUpper());
                 string serialNumber = strEPC.Substring(7).Replace(" ", "");
-                ulong uEPCNumber = ulong.Parse(serialNumber);
+                uEPCNumber = ulong.Parse(serialNumber);
                 string EPSnumber = uEPCNumber.ToString("D20");
                 return EPClabel + EPSnumber; ;
             }
             catch(Exception exp)
             {
                 Trace.WriteLine("Get Exception " + exp.Message);
+                uEPCNumber = 0;
                 return "";
             }            
         }

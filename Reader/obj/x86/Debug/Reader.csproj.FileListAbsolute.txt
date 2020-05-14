@@ -45,3 +45,9 @@ C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.pdb
 \\ps24\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.csproj.CoreCompileInputs.cache
 \\ps24\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.dll
 \\ps24\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.pdb
+C:\Users\dyeh\source\repos\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.csprojAssemblyReference.cache
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\bin\x86\Debug\Reader.dll
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\bin\x86\Debug\Reader.pdb
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.csprojResolveAssemblyReference.cache
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.dll
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.pdb

@@ -71,7 +71,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>BEA6D6CE11AC8DDA5C277735970AE7052E844DEE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>7961290C64B59C7327EE313DAAB83AEB4633E054</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>RFIDTag_2_TemporaryKey.pfx</ManifestKeyFile>

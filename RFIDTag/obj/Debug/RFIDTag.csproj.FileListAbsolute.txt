@@ -39,3 +39,9 @@ C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\BlowFishClassLi
 C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\Reader.dll
 C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\BlowFishClassLibrary.pdb
 C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\Reader.pdb
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.csprojResolveAssemblyReference.cache
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.ProjectInstaller.resources
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.Properties.Resources.resources
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.csproj.GenerateResource.Cache
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.exe
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.pdb

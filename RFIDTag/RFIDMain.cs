@@ -563,7 +563,7 @@ namespace RFIDTag
                     {
                         //byte btMemBank = 3; // 0
                         //byte btWordAddr = 0; // 0
-                        //byte btWordCnt = 20; // 4
+                        //byte btWordCnt = 30; // 4
                         bool bReadSuccess = ProcessReadTag(msgTran);
                         byte[] btAryPwd = RFIDTagInfo.GetPassword(symmetric.readAccessCode(), 2);
 
@@ -578,7 +578,7 @@ namespace RFIDTag
                                         reader.ReadTag(m_curSetting.btReadId, 0, 0, 4, btAryPwd);
                                         break;
                                     default:
-                                        reader.ReadTag(m_curSetting.btReadId, 3, 0, 22, null); //btAryPwd);
+                                        reader.ReadTag(m_curSetting.btReadId, 3, 0, 30, null); //btAryPwd);
                                         break;
                                 }                                                         
                                 //Trace.WriteLine("Read Tag retry (" + readTagRetry + "), state " + 
@@ -599,7 +599,7 @@ namespace RFIDTag
                             if(tagState == readTagStatus.ReadReserveOK)
                             {
                                 //Thread.Sleep(rwTagDelay);
-                                reader.ReadTag(m_curSetting.btReadId, 3, 0, 22, null); //btAryPwd);
+                                reader.ReadTag(m_curSetting.btReadId, 3, 0, 30, null); //btAryPwd);
                                 Thread.Sleep(rwTagDelay);
                                 //Trace.WriteLine("Read Tag ok" +
                                 //                  ", state " + tagState.ToString());
@@ -841,6 +841,23 @@ namespace RFIDTag
             }
         }
 
+        private string lookupTable(string label, string data)
+        {
+            ulong labelNum = 0;
+            string data1 = data;
+
+            RFIDTagInfo.readEPCLabel(label, out labelNum);
+
+            if (labelNum < 99999999999999)
+            {
+                if (data.Length > 120)
+                {
+                    data1 = data.Substring(0, 120);
+                }
+            }
+            return data1;
+        }
+
         bool ProcessReadTag(Reader.MessageTran msgTran)
         {
             string strCmd = "Read Tag";
@@ -886,6 +903,8 @@ namespace RFIDTag
                     //read data section
                     try
                     {
+                        strData = lookupTable(strEPC, strData);
+
                         verifyTag(strData);
                         Trace.WriteLine(" State: " + tagState.ToString());
                         switch (tagState)
@@ -914,7 +933,7 @@ namespace RFIDTag
                                     if(RFIDTagInfo.addVolumeToFile(intToneVolume, 0, false))
                                     {
                                         tagState = readTagStatus.Erasing;
-                                        writeZeroTag(3, 0, 22);
+                                        writeZeroTag(3, 0, 30);
                                         Trace.WriteLine("Erasing data ");
                                         Thread.Sleep(rwTagDelay);
                                     }
@@ -1028,7 +1047,7 @@ namespace RFIDTag
                 if (tagState == readTagStatus.Erasing)
                 {
                     byte[] btAryPwd = RFIDTagInfo.GetPassword(symmetric.readAccessCode(), 2);
-                    reader.ReadTag(m_curSetting.btReadId, 3, 0, 22, btAryPwd);
+                    reader.ReadTag(m_curSetting.btReadId, 3, 0, 30, btAryPwd);
                     Thread.Sleep(50);
                 }
                 return true;
@@ -1243,12 +1262,12 @@ namespace RFIDTag
                                     int readCount = 0;
                                     int readRSSI = 60;
                                     int maxCountIndex = -1;
-
+                                    ulong labelNum = 0;
                                     for (int i = 0; i < tagLists.Count; i++)
                                     {
                                         int tagCount = Int32.Parse(tagLists[i][2]);
                                         int tagRSSI = Int32.Parse(tagLists[i][3]);
-                                        string tagLabel = RFIDTagInfo.readEPCLabel(tagLists[i][0]);
+                                        string tagLabel = RFIDTagInfo.readEPCLabel(tagLists[i][0], out labelNum);
                                         
                                         if ((readCount < tagCount) &&
                                             (readRSSI < tagRSSI) && (tagRSSI > 60) &&
@@ -1268,8 +1287,8 @@ namespace RFIDTag
                                         goto Idle;
 
                                     strEPC = tagLists[maxCountIndex][0];
-                                    string convertLabel = RFIDTagInfo.readEPCLabel(tagLists[maxCountIndex][0]);
-                                    if (convertLabel == "")
+                                    string convertLabel = RFIDTagInfo.readEPCLabel(tagLists[maxCountIndex][0], out labelNum);
+                                    if (convertLabel == "" || labelNum == 0)
                                     {//label format not correct
                                         goto Idle;
                                     }
@@ -1297,7 +1316,7 @@ namespace RFIDTag
                                         //    m_curOperateTagBuffer.strAccessEpcMatch + " state: " +
                                         //    tagState.ToString());
 
-                                        reader.ReadTag(m_curSetting.btReadId, 3, 0, 22, null); // btAryPwd);
+                                        reader.ReadTag(m_curSetting.btReadId, 3, 0, 30, null); // btAryPwd);
                                         Thread.Sleep(rwTagDelay);
                                         break;
                                     }
@@ -1317,7 +1336,7 @@ namespace RFIDTag
                                     if (tagState == readTagStatus.ReadReserve)
                                         reader.ReadTag(m_curSetting.btReadId, 0, 0, 4, btAryPwd);
                                     else
-                                        reader.ReadTag(m_curSetting.btReadId, 3, 0, 22, null); // btAryPwd);
+                                        reader.ReadTag(m_curSetting.btReadId, 3, 0, 30, null); // btAryPwd);
 
                                     Thread.Sleep(rwTagDelay);
                                     break;

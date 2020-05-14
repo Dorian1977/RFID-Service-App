@@ -1,7 +1,0 @@
-// BlowFishDLL.def
-//
-LIBRARY "BlowFishDLL"
-
-EXPORTS
-   _Encode	@1
-   _Decode	@2

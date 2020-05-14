@@ -140,7 +140,21 @@ namespace RFIDTag
             {//can't covert 0x00 to ASCII word
                 return "";
             }
-            for(int i = 0; i < 2; i++)
+
+            for (int j = 0; j < inputPart2.Length / 6; j++)
+            {
+                int pos = inputPart2.LastIndexOf("00");
+                if (pos != -1)
+                {
+                    inputPart2 = inputPart2.Remove(pos - 3);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            for (int i = 0; i < 2; i++)
             {
                 string hex2Ascii = "";
                 string plaintext = "";
@@ -151,8 +165,8 @@ namespace RFIDTag
                         case decryptedState.CombinedMemory:
                             {
                                 hex2Ascii = RFIDTagInfo.HEXToASCII(
-                                                    inputPart1 + 
-                                                    inputPart2.Remove(inputPart2.Length-12));
+                                                    inputPart1 + inputPart2);
+                                
                                 if (!IsBase64String(hex2Ascii))
                                 {
                                     //Trace.WriteLine("Format not support1 " + hex2Ascii);
@@ -174,6 +188,7 @@ namespace RFIDTag
                             break;
                     }
 
+
                     //Trace.WriteLine("Read encrypted message " + hex2Ascii +
                     //                  ", decState = " + decState.ToString());
                     byte[] cipherText = System.Convert.FromBase64String(hex2Ascii);
@@ -182,17 +197,15 @@ namespace RFIDTag
                     if(plaintext != "")
                         return plaintext;
                 }
-                catch (Exception exp)
+                catch (Exception exp)  {   }
+                switch (decState)
                 {
-                    switch (decState)
-                    {
-                        case decryptedState.CombinedMemory:                                
-                                decState = decryptedState.SingleMemroy;                                
-                            break;
-                        case decryptedState.SingleMemroy:
-                                decState = decryptedState.CombinedMemory;                                
-                            return "";                          
-                    }
+                    case decryptedState.CombinedMemory:
+                        decState = decryptedState.SingleMemroy;
+                        break;
+                    case decryptedState.SingleMemroy:
+                        decState = decryptedState.CombinedMemory;
+                        return "";
                 }
             }
             return "";

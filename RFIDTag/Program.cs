@@ -18,11 +18,7 @@ namespace RFIDTag
         {
             ServiceBase[] ServicesToRun;
             RFIDService.RFIDService service = new RFIDService.RFIDService();
-            
-            //string resource = "RFIDTag.BlowFishClassLibrary.dll";
-            //EmbeddedAssembly.Load(resource, "BlowFishClassLibrary.dll");
-            //AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
-            
+                      
             if (Environment.UserInteractive)
             {
                 ServicesToRun = new ServiceBase[]
@@ -40,10 +36,6 @@ namespace RFIDTag
                 };
                 ServiceBase.Run(ServicesToRun);
             }
-        }
-        static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-        {
-            return EmbeddedAssembly.Get(args.Name);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define BLOWFISH_CS
+using System;
 using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Text;
@@ -91,7 +92,7 @@ namespace RFIDTag
         private static extern unsafe void Decode(byte* key, int keybytes,
                                     byte* pInput, byte* pOutput, UInt32 lSize);
 #endif
-#if true
+#if BLOWFISH_CS
         public static byte[] encodeVolumeData(ulong intToneVolume, UInt32 dongleID)
         {
             byte[] keyArr = Encoding.ASCII.GetBytes(key);
@@ -146,7 +147,7 @@ namespace RFIDTag
             return result;
         }
 #endif
-#if true
+#if BLOWFISH_CS
         public static ulong decodeVolumeData(byte[] bytes, out UInt32 dongleID)
         {
             byte[] keyArr = Encoding.ASCII.GetBytes(key);
