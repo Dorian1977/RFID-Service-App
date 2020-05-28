@@ -51,19 +51,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>uB4e91ECffKhhFApiEkTYFPZ3v7yjchzlxMOOsbqq+Y=</dsig:DigestValue>
+        <dsig:DigestValue>gohgL9nbPi+Xq6Y7VCZEd/66it1sXWoPaicQ88chH9g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RFIDTag.exe" size="75192">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RFIDTag.exe" size="75704">
       <assemblyIdentity name="RFIDTag" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>oH0Q4W9f42Pr36Fsq8FSXWeiZt0q1oBKWeOeIv2Z4LU=</dsig:DigestValue>
+        <dsig:DigestValue>WH0fbQqlsLfMoWYiGZCPV536GStRaDd9J0b8DZy0Vjg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

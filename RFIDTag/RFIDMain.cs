@@ -902,7 +902,7 @@ namespace RFIDTag
                     }
                     //read data section
                     try
-                    {
+                    {//find error in encrypted function, got 1 more bytes
                         strData = lookupTable(strEPC, strData);
 
                         verifyTag(strData);
