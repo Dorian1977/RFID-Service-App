@@ -186,7 +186,7 @@ namespace RFIDTag
             {//C:\\ProgramData\InkAuth...
                 if (File.Exists(RFIDTagInfo.readinkAuthFilePath()))
                 {
-                    //Trace.WriteLine("File found readinkAuthFile");
+                    Trace.WriteLine("File found readinkAuthFile");
                     checkAuthFile();                    
                 }
                 m_nReceiveFlag_3s = 0;
@@ -591,15 +591,14 @@ namespace RFIDTag
                                 Trace.WriteLine("Read tag failed" + ", state " +
                                                   tagState.ToString());
                                 readTagRetry = 0;
-                                setLEDstaus(LEDStatus.Red);                               
-                            }   
+                                setLEDstaus(LEDStatus.Red);
+                            }
                         }
                         else
                         {
                             if(tagState == readTagStatus.ReadReserveOK)
                             {
-                                //Thread.Sleep(rwTagDelay);
-                                reader.ReadTag(m_curSetting.btReadId, 3, 0, 30, null); //btAryPwd);
+                                reader.ReadTag(m_curSetting.btReadId, 3, 0, 30, null);
                                 Thread.Sleep(rwTagDelay);
                                 //Trace.WriteLine("Read Tag ok" +
                                 //                  ", state " + tagState.ToString());
@@ -622,7 +621,7 @@ namespace RFIDTag
                         {
                             if(writeTagRetry++ < rwTagRetryMAX)
                             {
-                                if (writeZeroTag(3, 0, 22) != 0)
+                                if (writeZeroTag(3, 0, RFIDTagInfo.btErasecount) != 0)
                                     bWriteSuccess = false;
 
                                 //Trace.WriteLine("Write Tag retry " + writeTagRetry +
@@ -635,7 +634,9 @@ namespace RFIDTag
                                 Trace.WriteLine("Write tag failed" +
                                     ", state " + tagState.ToString());
                                 writeTagRetry = 0;                                
-                                setLEDstaus(LEDStatus.Red);                                                              
+                                setLEDstaus(LEDStatus.Red);
+                                Thread.Sleep(rwTagDelay);        
+                                setLEDstaus(LEDStatus.RedOff);
                             }                            
                         }
                         else
@@ -823,7 +824,7 @@ namespace RFIDTag
                 if (RFIDTagInfo.verifyData(decryptMsg, true, false))
                 {
                     tagState = readTagStatus.VerifiedSuccessful;
-                    //Trace.WriteLine("Verified data successful, " + decryptMsg);
+                    Trace.WriteLine("Verified data successful");
                 }
                 else
                 {
@@ -933,7 +934,7 @@ namespace RFIDTag
                                     if(RFIDTagInfo.addVolumeToFile(intToneVolume, 0, false))
                                     {
                                         tagState = readTagStatus.Erasing;
-                                        writeZeroTag(3, 0, 30);
+                                        writeZeroTag(3, 0, RFIDTagInfo.btErasecount);
                                         Trace.WriteLine("Erasing data ");
                                         Thread.Sleep(rwTagDelay);
                                     }
@@ -957,6 +958,13 @@ namespace RFIDTag
 #endif
                                     break; // return true;
                                 }
+                            case readTagStatus.ReadReserveOK:
+                                {
+                                    reader.ReadTag(m_curSetting.btReadId, 3, 0, 30, null);
+                                    Thread.Sleep(rwTagDelay);
+                                }
+                                readTagRetry = 0;
+                                break;
 
                             case readTagStatus.ReadReserve:
                             case readTagStatus.VerifiedFailed:
@@ -987,7 +995,7 @@ namespace RFIDTag
         }
      
         private int writeZeroTag(byte btMemBank, byte btWordAddr, byte btWordCnt)
-        {//user section to zero   //3,0,22
+        {//user section to zero   //3,0,22/30 => 3, 0, 5 is enough
             byte btCmd = 0x94;
             byte[] zeroTmp = Enumerable.Repeat((byte)0x00, btWordCnt*2).ToArray();
             byte[] btAryPwd = RFIDTagInfo.GetPassword(symmetric.readAccessCode(), 2);

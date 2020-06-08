@@ -46,12 +46,7 @@ C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\
 C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.exe
 C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.pdb
 C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.exe.config
-C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.exe.manifest
-C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.application
 C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.exe
 C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.pdb
 C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Debug\Reader.dll
 C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Debug\Reader.pdb
-C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.TrustInfo.xml
-C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.exe.manifest
-C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\Debug\RFIDTag.application

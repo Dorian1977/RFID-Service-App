@@ -34,3 +34,14 @@ C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.applica
 C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\x86\Debug\RFIDTag.TrustInfo.xml
 C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\x86\Debug\RFIDTag.exe.manifest
 C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\x86\Debug\RFIDTag.application
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\x86\Debug\RFIDTag.csprojResolveAssemblyReference.cache
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\x86\Debug\RFIDTag.ProjectInstaller.resources
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\x86\Debug\RFIDTag.Properties.Resources.resources
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\x86\Debug\RFIDTag.csproj.GenerateResource.Cache
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.exe.config
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.exe
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Debug\RFIDTag.pdb
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Debug\Reader.dll
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Debug\Reader.pdb
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\x86\Debug\RFIDTag.exe
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\x86\Debug\RFIDTag.pdb

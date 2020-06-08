@@ -23,13 +23,14 @@ namespace RFIDTag
     public class RFIDTagInfo
     {
         private const ulong tonerMAXVolume = 2000000000000; //max is 2L * 1000000000
+        public const char serialSep = '=';
+
         private static ulong currentTonerVolume = 0; //1L = 1,000,000,000,000 pL
         private static string labelFormat = "";
         private static string tonerVolumeFile = "";
         private static string inkAuthFile = "";
         private static string inkLogFile = "";
         private static string inkFolder = "";
-        public const char serialSep = '=';
         public static UInt32 dongleID = 0;
         public static List<string> labelList = new List<string>();
         
@@ -314,6 +315,7 @@ namespace RFIDTag
             }           
         }
 
+        public const byte btErasecount = 5;
         public static bool verifyData(string inputData, bool bVerifyData, bool bRead2Erase)
         {//1. input label = correct, bRead2Erase = false,
          //2. input label = 0, bRead2Erase = true;
@@ -324,7 +326,7 @@ namespace RFIDTag
                 if (bRead2Erase)
                 {
                     ulong uData = 0;
-                    if (ulong.TryParse(inputData.Replace(" ", ""), out uData))
+                    if (ulong.TryParse(inputData.Substring(0, btErasecount).Replace(" ", ""), out uData))
                     {
                         if (uData == 0)
                             return true;

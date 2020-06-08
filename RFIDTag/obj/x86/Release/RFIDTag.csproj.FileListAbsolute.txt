@@ -36,3 +36,15 @@ C:\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\x86\Release\RFIDTag.appli
 \\ps24\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\x86\Release\RFIDTag.exe.manifest
 \\ps24\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\x86\Release\RFIDTag.application
 \\ps24\Users\dyeh\source\repos\RFID ConsoleApp\RFIDTag\obj\x86\Release\RFIDTag.csproj.CopyComplete
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\x86\Release\RFIDTag.csprojResolveAssemblyReference.cache
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\x86\Release\RFIDTag.ProjectInstaller.resources
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\x86\Release\RFIDTag.Properties.Resources.resources
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\x86\Release\RFIDTag.csproj.GenerateResource.Cache
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\x86\Release\RFIDTag.exe
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\obj\x86\Release\RFIDTag.pdb
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe.config
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.xml
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.exe
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Release\RFIDTag.pdb
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Release\Reader.dll
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\RFIDTag\bin\x86\Release\Reader.pdb

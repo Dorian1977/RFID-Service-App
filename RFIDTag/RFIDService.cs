@@ -37,7 +37,7 @@ namespace RFIDService
             catch (InvalidOperationException e)
             {
                 // ...
-                Trace.WriteLine("Could not start the {0} service.", serviceName);
+                //Trace.WriteLine("Could not start the {0} service.", serviceName);
             }
         }
         
@@ -54,7 +54,7 @@ namespace RFIDService
             }
             catch (InvalidOperationException e)
             {
-                Trace.WriteLine("Could not stop the {0} service.", serviceName);                
+                //Trace.WriteLine("Could not stop the {0} service.", serviceName);                
             }
         }
 
