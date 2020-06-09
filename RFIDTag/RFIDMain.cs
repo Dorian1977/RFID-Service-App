@@ -58,7 +58,8 @@ namespace RFIDTag
             GreenOff,
             Red,
             RedOff,
-            Idle
+            BlinkingGreen,
+            BlinkingRed
         }
 
         readTagStatus tagState = readTagStatus.Reading;
@@ -129,7 +130,7 @@ namespace RFIDTag
             });
             threadInventory.Start();
 
-            timerResetLED = new System.Timers.Timer(4000);
+            timerResetLED = new System.Timers.Timer(3000);
             timerResetLED.Elapsed += OnTimerResetLED;
             timerResetLED.AutoReset = false;
             timerResetLED.Enabled = false;
@@ -564,7 +565,8 @@ namespace RFIDTag
                         //byte btMemBank = 3; // 0
                         //byte btWordAddr = 0; // 0
                         //byte btWordCnt = 30; // 4
-                        bool bReadSuccess = ProcessReadTag(msgTran);
+                        readTag tagStatus = readTag.None;
+                        bool bReadSuccess = ProcessReadTag(msgTran, out tagStatus);
                         byte[] btAryPwd = RFIDTagInfo.GetPassword(symmetric.readAccessCode(), 2);
 
                         if (!bReadSuccess)
@@ -591,7 +593,16 @@ namespace RFIDTag
                                 Trace.WriteLine("Read tag failed" + ", state " +
                                                   tagState.ToString());
                                 readTagRetry = 0;
-                                setLEDstaus(LEDStatus.Red);
+                                switch(tagStatus)
+                                {
+                                    case readTag.Error:
+                                    case readTag.Exception:
+                                        setLEDstaus(LEDStatus.BlinkingRed);
+                                        break;
+                                    case readTag.Failed:
+                                        setLEDstaus(LEDStatus.Red);
+                                        break;
+                                }                                
                             }
                         }
                         else
@@ -626,17 +637,15 @@ namespace RFIDTag
 
                                 //Trace.WriteLine("Write Tag retry " + writeTagRetry +
                                 //    ", state " + tagState.ToString());
-                                Thread.Sleep(rwTagDelay);
+                                Thread.Sleep(rwTagDelay * 3);
                                 break;
                             }
                             else
                             {                                
                                 Trace.WriteLine("Write tag failed" +
                                     ", state " + tagState.ToString());
-                                writeTagRetry = 0;                                
-                                setLEDstaus(LEDStatus.Red);
-                                Thread.Sleep(rwTagDelay);        
-                                setLEDstaus(LEDStatus.RedOff);
+                                writeTagRetry = 0;
+                                setLEDstaus(LEDStatus.BlinkingRed);
                             }                            
                         }
                         else
@@ -683,6 +692,12 @@ namespace RFIDTag
             } while ((bWriteResult != 0) && writeCnt < writeMAXCnt);           
         }
 
+        enum LED
+        {
+            Green = 0x04,
+            Red = 0x03
+        }
+        
         private void setLEDstaus(LEDStatus ledStatus)
         {//GPIO 4 green, GPIO 3 red
             if(m_curSetting.btReadId == 0xFF)
@@ -694,7 +709,7 @@ namespace RFIDTag
             {
                 case LEDStatus.GreenOff:
                     {
-                        WriteLEDGPIO(m_curSetting.btReadId, 0x04, 0);
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 0);
                         m_curSetting.btGpio4Value = 0;
                         //Trace.WriteLine("LED Green OFF ");
                         resetGreenLED = ledStatus;
@@ -702,7 +717,7 @@ namespace RFIDTag
                     return;
                 case LEDStatus.RedOff:
                     {
-                        WriteLEDGPIO(m_curSetting.btReadId, 0x03, 0);
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Red, 0);
                         m_curSetting.btGpio3Value = 0;
                         //Trace.WriteLine("LED Red OFF, ");
                         resetRedLED = ledStatus;
@@ -712,7 +727,7 @@ namespace RFIDTag
                     {
                         //if (resetGreenLED == LEDStatus.Green)
                         {
-                            WriteLEDGPIO(m_curSetting.btReadId, 0x04, 0);
+                            WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 0);
                             m_curSetting.btGpio4Value = 0;
                             //Trace.Write("LED Green OFF ");
                             resetGreenLED = LEDStatus.Off;
@@ -720,7 +735,7 @@ namespace RFIDTag
                         }
                         //if (resetRedLED == LEDStatus.Red)
                         {
-                            WriteLEDGPIO(m_curSetting.btReadId, 0x03, 0);
+                            WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Red, 0);
                             m_curSetting.btGpio3Value = 0;
                             //Trace.WriteLine("LED Red OFF, ");
                             resetRedLED = LEDStatus.RedOff;
@@ -734,11 +749,11 @@ namespace RFIDTag
                         {
                             m_curSetting.btGpio4Value = 0;
                             resetGreenLED = LEDStatus.GreenOff;
-                            WriteLEDGPIO(m_curSetting.btReadId, 0x04, 0);
+                            WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 0);
                             Thread.Sleep(rwTagDelay);
                             //Trace.Write("LED Green Off, ");
                         }
-                        WriteLEDGPIO(m_curSetting.btReadId, 0x03, 1);
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Red, 1);
                         m_curSetting.btGpio3Value = 1;
                         Trace.Write("LED Red ON, ");
                         resetRedLED = ledStatus;
@@ -746,31 +761,43 @@ namespace RFIDTag
                     break;
                 case LEDStatus.Green:
                     {
-                        WriteLEDGPIO(m_curSetting.btReadId, 0x04, 1);
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 1);
                         m_curSetting.btGpio4Value = 1;
                         Trace.WriteLine("LED Green ON ");
                         resetGreenLED = ledStatus;
                     }
                     break;
-                case LEDStatus.Idle:
+                case LEDStatus.BlinkingRed:
                     {
-                        //if (resetRedLED == LEDStatus.Red)
-                        {
-                            WriteLEDGPIO(m_curSetting.btReadId, 0x03, 0);
-                            m_curSetting.btGpio3Value = 0;
-                            //Trace.Write("LED Red OFF, ");
-                            resetRedLED = LEDStatus.RedOff;
-                            Thread.Sleep(rwTagDelay);
-                        }
+                        m_curSetting.btGpio4Value = 0;                       
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 0);
+                        resetRedLED = LEDStatus.GreenOff;
+                        Thread.Sleep(rwTagDelay);
 
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Red, 1);
+                        m_curSetting.btGpio3Value = 1;                        
+                        Thread.Sleep(rwTagDelay);
+                        
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Red, 0);
+                        m_curSetting.btGpio3Value = 0;
+                        resetRedLED = LEDStatus.RedOff;
+                        Thread.Sleep(rwTagDelay);
+                    }
+                    break;
+                case LEDStatus.BlinkingGreen:
+                    {                        
+                        WriteLEDGPIO(m_curSetting.btReadId, 0x03, 0);
+                        m_curSetting.btGpio3Value = 0;
+                        resetRedLED = LEDStatus.RedOff;
+                        Thread.Sleep(rwTagDelay);
+                      
                         m_curSetting.btGpio4Value = 1;
-                        WriteLEDGPIO(m_curSetting.btReadId, 0x04, 1);                       
-                        //Trace.Write("LED Green ON, ");
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 1);            
                         Thread.Sleep(rwTagDelay);
 
                         m_curSetting.btGpio4Value = 0;
                         resetGreenLED = LEDStatus.GreenOff;
-                        WriteLEDGPIO(m_curSetting.btReadId, 0x04, 0);
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 0);
                         //Trace.WriteLine("LED Green OFF ");
                     }
                     break;
@@ -828,17 +855,20 @@ namespace RFIDTag
                 }
                 else
                 {
-                    if(tagState == readTagStatus.ReadReserveOK)
+                    if (tagState == readTagStatus.ReadReserveOK)
+                    {
                         tagState = readTagStatus.VerifiedFailed;
-
-                    Trace.WriteLine("Verified data failed, " + decryptMsg + 
-                                      ", state " + tagState.ToString());
+                        Trace.WriteLine("Verified data failed, " + decryptMsg +
+                                          ", state " + tagState.ToString());
+                    }
                 }
             }
             else if (tagState != readTagStatus.ZeroData)
-            {
+            {                
+                if (tagState != readTagStatus.VerifiedFailed)
+                    Trace.WriteLine("Read data failed, state " + tagState.ToString());
+
                 tagState = readTagStatus.VerifiedFailed;
-                Trace.WriteLine("Read data failed, state " + tagState.ToString());
             }
         }
 
@@ -859,7 +889,15 @@ namespace RFIDTag
             return data1;
         }
 
-        bool ProcessReadTag(Reader.MessageTran msgTran)
+        enum readTag
+        {
+            None,
+            Error,
+            Failed,
+            Exception
+        }
+        
+        bool ProcessReadTag(Reader.MessageTran msgTran, out readTag tagStatus)
         {
             string strCmd = "Read Tag";
             string strErrorCode = string.Empty;
@@ -873,9 +911,9 @@ namespace RFIDTag
 
                     if (tagState != readTagStatus.ReadReserve)
                     {
-                        Trace.WriteLine(strCmd + " Failure, read tag failure cause1: " + strErrorCode);
+                        //Trace.WriteLine(strCmd + " Failure, read tag failure cause1: " + strErrorCode);
                     }
-                    return false;
+                    tagStatus = readTag.Error;
                 }
                 else
                 {                    
@@ -901,6 +939,8 @@ namespace RFIDTag
                             break;
                         }
                     }
+
+                    tagStatus = readTag.None;
                     //read data section
                     try
                     {//find error in encrypted function, got 1 more bytes
@@ -923,7 +963,7 @@ namespace RFIDTag
                                         tagInfo.bVerified = true;
                                         tagState = readTagStatus.ZeroData;
                                     }
-                                    break; // return true;
+                                    return true;
                                 }
 
                             case readTagStatus.VerifiedSuccessful:
@@ -936,12 +976,13 @@ namespace RFIDTag
                                         tagState = readTagStatus.Erasing;
                                         writeZeroTag(3, 0, RFIDTagInfo.btErasecount);
                                         Trace.WriteLine("Erasing data ");
-                                        Thread.Sleep(rwTagDelay);
+                                        Thread.Sleep(rwTagDelay * 3);
                                     }
                                     else
                                     {
-                                        setLEDstaus(LEDStatus.Idle);
-                                        return false;
+                                        setLEDstaus(LEDStatus.BlinkingGreen);
+                                        //return false;
+                                        break;
                                     }
 #else
                                     string[] tempList = tagInfo.tagDecryptedInfo.Split(RFIDTagInfo.serialSep);
@@ -956,7 +997,7 @@ namespace RFIDTag
                                         }
                                     }
 #endif
-                                    break; // return true;
+                                    return true;
                                 }
                             case readTagStatus.ReadReserveOK:
                                 {
@@ -964,15 +1005,19 @@ namespace RFIDTag
                                     Thread.Sleep(rwTagDelay);
                                 }
                                 readTagRetry = 0;
-                                break;
+                                return true; // break;
 
                             case readTagStatus.ReadReserve:
+                                tagStatus = readTag.None;
+                                break;
+
                             case readTagStatus.VerifiedFailed:
-                                return false;
+                                tagStatus = readTag.Failed;
+                                break;
                             default:
                                 break;
                         }
-                        return true;
+                        //return true;
                             
                     }
                     catch (Exception exp)
@@ -980,18 +1025,17 @@ namespace RFIDTag
                         Trace.WriteLine(strCmd + " tag " + strEPC 
                                             + " got error " + exp.Message +
                                             ", state " + tagState.ToString());
-                        return false;
+                        tagStatus = readTag.Exception;                    
                     }
-                }                  
-                          
+                }                        
             }
             catch (Exception exp)
             {
-                //setLEDstaus(LEDStatus.Red); //red on      
                 Trace.WriteLine(strCmd + " got error " + exp.Message +
-                                  ", state " + tagState.ToString());
-                return false;
-            }            
+                                  ", state " + tagState.ToString());                
+                tagStatus = readTag.Exception;               
+            }
+            return false;
         }
      
         private int writeZeroTag(byte btMemBank, byte btWordAddr, byte btWordCnt)
@@ -1324,7 +1368,7 @@ namespace RFIDTag
                                         //    m_curOperateTagBuffer.strAccessEpcMatch + " state: " +
                                         //    tagState.ToString());
 
-                                        reader.ReadTag(m_curSetting.btReadId, 3, 0, 30, null); // btAryPwd);
+                                        reader.ReadTag(m_curSetting.btReadId, 3, 0, 30, btAryPwd);
                                         Thread.Sleep(rwTagDelay);
                                         break;
                                     }
@@ -1344,7 +1388,7 @@ namespace RFIDTag
                                     if (tagState == readTagStatus.ReadReserve)
                                         reader.ReadTag(m_curSetting.btReadId, 0, 0, 4, btAryPwd);
                                     else
-                                        reader.ReadTag(m_curSetting.btReadId, 3, 0, 30, null); // btAryPwd);
+                                        reader.ReadTag(m_curSetting.btReadId, 3, 0, 30, btAryPwd);
 
                                     Thread.Sleep(rwTagDelay);
                                     break;
@@ -1354,8 +1398,7 @@ namespace RFIDTag
                             {
                                 //MessageBox.Show(ex.Message);
                                 Trace.WriteLine("Reading tag format not support Exception " + ex.Message);
-                                setLEDstaus(LEDStatus.Red);
-                                Thread.Sleep(rwTagDelay);
+                                setLEDstaus(LEDStatus.BlinkingRed); //red on
                             }
 #endif
                             tagState = readTagStatus.Reading;
@@ -1371,7 +1414,7 @@ namespace RFIDTag
                         }
 
                     Idle:
-                        setLEDstaus(LEDStatus.Idle);
+                        setLEDstaus(LEDStatus.BlinkingGreen);
                     }
                     break;
 
