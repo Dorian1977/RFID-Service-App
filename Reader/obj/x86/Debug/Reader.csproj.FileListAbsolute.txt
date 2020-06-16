@@ -50,3 +50,4 @@ C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\bin\x
 C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\bin\x86\Debug\Reader.pdb
 C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.dll
 C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.pdb
+C:\Users\dyeh\Documents\Visual Studio 2015\Projects\RFID ConsoleApp\Reader\obj\x86\Debug\Reader.csprojResolveAssemblyReference.cache

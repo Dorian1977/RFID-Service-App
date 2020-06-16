@@ -194,8 +194,11 @@ namespace RFIDTag
                     byte[] cipherText = System.Convert.FromBase64String(hex2Ascii);
                     plaintext = DecryptData(cipherText);
 
-                    if(plaintext != "")
+                    if (plaintext != "")
+                    {
+                        decState = decryptedState.CombinedMemory;
                         return plaintext;
+                    }
                 }
                 catch (Exception exp)  {   }
                 switch (decState)

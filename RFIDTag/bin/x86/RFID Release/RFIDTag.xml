@@ -1,0 +1,271 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RFIDTag</name>
+    </assembly>
+    <members>
+        <member name="T:RFIDTag.Blowfish">
+            <summary>
+            Class that provides blowfish encryption.
+            </summary>
+        </member>
+        <member name="M:RFIDTag.Blowfish.#ctor(System.Byte[])">
+            <summary>
+            Constructs and initializes a blowfish instance with the supplied key.
+            </summary>
+            <param name="key">The key to cipher with.</param>
+        </member>
+        <member name="M:RFIDTag.Blowfish.F(System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RFIDTag.Blowfish.Encipher(System.Byte[],System.Int32)">
+            <summary>
+            Encrypts a byte array in place.
+            </summary>
+            <param name="data">The array to encrypt.</param>
+            <param name="length">The amount to encrypt.</param>
+        </member>
+        <member name="M:RFIDTag.Blowfish.Encipher(System.UInt32@,System.UInt32@)">
+            <summary>
+            Encrypts 8 bytes of data (1 block)
+            </summary>
+            <param name="xl">The left part of the 8 bytes.</param>
+            <param name="xr">The right part of the 8 bytes.</param>
+        </member>
+        <member name="M:RFIDTag.Blowfish.Decipher(System.Byte[],System.Int32)">
+            <summary>
+            Decrypts a byte array in place.
+            </summary>
+            <param name="data">The array to decrypt.</param>
+            <param name="length">The amount to decrypt.</param>
+        </member>
+        <member name="M:RFIDTag.Blowfish.Decipher(System.UInt32@,System.UInt32@)">
+            <summary>
+            Decrypts 8 bytes of data (1 block)
+            </summary>
+            <param name="xl">The left part of the 8 bytes.</param>
+            <param name="xr">The right part of the 8 bytes.</param>
+        </member>
+        <member name="P:RFIDTag.BlowfishStream.CanRead">
+            <summary>
+            Returns true if the stream support reads.
+            </summary>
+        </member>
+        <member name="P:RFIDTag.BlowfishStream.CanSeek">
+            <summary>
+            Returns true is the stream supports seeks.
+            </summary>
+        </member>
+        <member name="P:RFIDTag.BlowfishStream.CanWrite">
+            <summary>
+            Returns true if the stream supports writes.
+            </summary>
+        </member>
+        <member name="P:RFIDTag.BlowfishStream.Length">
+            <summary>
+            Returns the length of the stream.
+            </summary>
+        </member>
+        <member name="P:RFIDTag.BlowfishStream.Position">
+            <summary>
+            Gets or Sets the posistion of the stream.
+            </summary>
+        </member>
+        <member name="M:RFIDTag.BlowfishStream.Flush">
+            <summary>
+            Flushes the stream.
+            </summary>
+        </member>
+        <member name="M:RFIDTag.BlowfishStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Read data from the stream and encrypt it.
+            </summary>
+            <param name="buffer">The buffer to read into.</param>
+            <param name="offset">The offset in the buffer to begin storing data.</param>
+            <param name="count">The number of bytes to read.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RFIDTag.BlowfishStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Write data to the stream after decrypting it.
+            </summary>
+            <param name="buffer">The buffer containing the data to write.</param>
+            <param name="offset">The offset in the buffer where the data begins.</param>
+            <param name="count">The number of bytes to write.</param>
+        </member>
+        <member name="M:RFIDTag.BlowfishStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <param name="callback"></param>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RFIDTag.BlowfishStream.EndRead(System.IAsyncResult)">
+            <summary>
+            
+            </summary>
+            <param name="asyncResult"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RFIDTag.BlowfishStream.ReadComplete(System.IAsyncResult)">
+            <summary>
+            The Read has completed.
+            </summary>
+            <param name="result">The result of the async write.</param>
+        </member>
+        <member name="M:RFIDTag.BlowfishStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <param name="callback"></param>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RFIDTag.BlowfishStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            Move the current stream posistion to the specified location.
+            </summary>
+            <param name="offset">The offset from the origin to seek.</param>
+            <param name="origin">The origin to seek from.</param>
+            <returns>The new position.</returns>
+        </member>
+        <member name="M:RFIDTag.BlowfishStream.SetLength(System.Int64)">
+            <summary>
+            Set the stream length.
+            </summary>
+            <param name="value">The length to set.</param>
+        </member>
+        <member name="M:RFIDTag.CCommondMethod.StringToByteArray(System.String)">
+            <summary>
+            Character string turn to hexadecimal array, and character strings separated by spaces.
+            </summary>
+            <param name="strHexValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RFIDTag.CCommondMethod.StringArrayToByteArray(System.String[],System.Int32)">
+            <summary>
+            Character array turn to hexadecimal array
+            </summary>
+            <param name="strAryHex"></param>
+            <param name="nLen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RFIDTag.CCommondMethod.ByteArrayToString(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Hexadecimal character array turn to character strings
+            </summary>
+            <param name="btAryHex"></param>
+            <param name="nIndex"></param>
+            <param name="nLen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RFIDTag.CCommondMethod.StringToStringArray(System.String,System.Int32)">
+            <summary>
+            Intercept character strings accord to specified length and archive as character array, and spaces ignored.
+            </summary>
+            <param name="strValue"></param>
+            <param name="nLength"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RFIDTag.EmbeddedAssembly">
+            <summary>
+            A class for loading Embedded Assembly
+            </summary>
+        </member>
+        <member name="M:RFIDTag.EmbeddedAssembly.Load">
+            <summary>
+            Load Assembly, DLL from Embedded Resources into memory.
+            </summary>
+            <param name="embeddedResource">Embedded Resource string. Example: WindowsFormsApplication1.SomeTools.dll</param>
+            <param name="fileName">File Name. Example: SomeTools.dll</param>
+        </member>
+        <member name="M:RFIDTag.EmbeddedAssembly.Get(System.String)">
+            <summary>
+            Retrieve specific loaded DLL/assembly from memory
+            </summary>
+            <param name="assemblyFullName"></param>
+            <returns></returns>
+        </member>
+        <member name="F:RFIDTag.ProjectInstaller.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:RFIDTag.ProjectInstaller.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:RFIDTag.ProjectInstaller.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:RFIDTag.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:RFIDTag.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:RFIDTag.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:RFIDTag.Properties.Resources.AccessCode">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:RFIDTag.Properties.Resources.LabelFormat">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:RFIDTag.Properties.Resources.SymmetricKey">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="M:RFIDTag.Program.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="F:RFIDService.RFIDService.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:RFIDService.RFIDService.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:RFIDService.RFIDService.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

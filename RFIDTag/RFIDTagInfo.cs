@@ -1,5 +1,4 @@
-﻿#define LOG_ENCRYPTED
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -11,19 +10,50 @@ using System.Threading;
 
 namespace RFIDTag
 {
-    public class tagInfo
+    public class RFIDTagData
     {
-        public static string label = "";
-        public static string tagDecryptedInfo = "";
-        public static string tagReserve = "";
-        public static string tagData = "";
-        public static bool bVerified = false;
+        public string EPC_ID;
+        public ulong EPC_PS_Num;
+        public string EPC_data;
+        public int readCount;
+        public int notUpdateCount;
+        public int rssi;
+        public int verifiedFailCount;
+
+        public RFIDTagData()
+        {
+            EPC_ID = "";
+            EPC_PS_Num = 0;
+            EPC_data = "";
+            readCount = 0;
+            rssi = 0;
+            verifiedFailCount = 0;
+        }
     }
-        
-    public class RFIDTagInfo
+
+    public class TagInfo
     {
+        public string label = "";
+        public string tagDecryptedInfo = "";
+        public string tagReserve = "";
+        public string tagData = "";
+        public bool bVerified = false;
+
+        public TagInfo()
+        {
+            label = "";
+            tagDecryptedInfo = "";
+            tagReserve = "";
+            tagData = "";
+            bVerified = false;
+        }
+    }
+
+    public class RFIDTagInfo
+    {        
         private const ulong tonerMAXVolume = 2000000000000; //max is 2L * 1000000000
         public const char serialSep = '=';
+        public static byte[] accessCode = null;
 
         private static ulong currentTonerVolume = 0; //1L = 1,000,000,000,000 pL
         private static string labelFormat = "";
@@ -79,11 +109,11 @@ namespace RFIDTag
                     }
                     fileStream.Close();
                 }
-    }
+            }
             catch(Exception exp)
             {
                 Trace.WriteLine("Get Exception " + exp.Message);
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 return false;
             }
             return true;
@@ -157,7 +187,7 @@ namespace RFIDTag
                     return false;
                 }
 
-                Trace.WriteLine("read Dongle ID " + dongleID);
+                Trace.Write("read Dongle ID " + dongleID);
                 byte[] defaultData = BlowFishImpl.encodeVolumeData((ulong)intToneVolume * 1000000000, dongleID);
 
                 if (!File.Exists(tonerVolumeFile))
@@ -198,9 +228,12 @@ namespace RFIDTag
                     }
                 }
                 else
-                {                    
+                {
+                    DateTime aTime = DateTime.Now;
+                    Trace.Write(aTime.ToString("MM/dd/yyyy HH:mm:ss: "));
+
                     currentTonerVolume = tmpVolume + (ulong)intToneVolume * 1000000000;
-                    Trace.Write("Ink file read " + currentTonerVolume.ToString() + " ");
+                    Trace.Write("Ink file read " + currentTonerVolume.ToString() + ", ");
 
                     if (currentTonerVolume > tonerMAXVolume)
                         currentTonerVolume = tonerMAXVolume;
@@ -222,7 +255,7 @@ namespace RFIDTag
             return false;
         }
 
-        public static string getLogData(bool bUseTagInfo, string inputTagLabel)
+        public static string getLogData(bool bUseTagInfo, string inputTagLabel, TagInfo tagInfo)
         {        
             string strHeadType = "", strIntType = "", strVolume = "",
                    strDate = "", strSupplier = "", tagLabel = "";
@@ -261,7 +294,6 @@ namespace RFIDTag
 
             try
             {
-#if LOG_ENCRYPTED
                 if (!File.Exists(inkLogFile))
                 {
                     using (StreamWriter sw = File.CreateText(inkLogFile))
@@ -278,13 +310,6 @@ namespace RFIDTag
                         sw.Close();
                     }
                 }
-#else
-                using (StreamWriter sw = File.AppendText(path + "\\log.dat"))
-                {
-                    sw.WriteLine(inputData);
-                    sw.Close();
-                }
-#endif
                 return true;
             }
             catch (Exception exp) {
@@ -315,7 +340,7 @@ namespace RFIDTag
             }           
         }
 
-        public const byte btErasecount = 5;
+        public const byte btErasecount = 4;
         public static bool verifyData(string inputData, bool bVerifyData, bool bRead2Erase)
         {//1. input label = correct, bRead2Erase = false,
          //2. input label = 0, bRead2Erase = true;

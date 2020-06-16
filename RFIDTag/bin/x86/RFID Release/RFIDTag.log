@@ -1,0 +1,50 @@
+Test message.1
+Test message.2
+Connect COM14@115200
+Get firmware version 1.9
+Com port found, Load setting
+Read Access code 50 30 43 4B 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, Test message.1
+Test message.2
+Test message.1
+Test message.2
+Test message.1
+Test message.2
+Test message.1
+Test message.2
+Connection failed, failure cause: A device attached to the system is not functioning.
+
+Connect COM1@115200
+Test message.1
+Test message.2
+Connect COM14@115200
+Get firmware version 1.9
+Com port found, Load setting
+Read Access code 50 30 43 4B 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, Ink file read 2000000000000
+, Ink file is update, write }^ñw@ýärsaÎ•
+*** Add Ink from file ***
+LED Green ON, LED Red Off, LED Green ON 
+LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Green OFF LED Red OFF, 
+LED Red OFF, LED Green ON, LED Green OFF 
+LED Red OFF, LED Green ON, LED Green OFF 

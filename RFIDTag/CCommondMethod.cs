@@ -151,6 +151,14 @@ namespace RFIDTag
             return strAryResult;
         }
 
+        //String -> String array -> Byte Array (hexadecimal array)
+        public static byte[] String2ByteArray(string strValue, int nLength, out byte wordCnt)
+        {
+            string[] result = StringToStringArray(strValue, nLength);
+            wordCnt = Convert.ToByte(result.Length / 2 + result.Length % 2);
+            return StringArrayToByteArray(result, result.Length);
+        }
+
         public static string FormatErrorCode(byte btErrorCode)
         {
             string strErrorCode = "";
