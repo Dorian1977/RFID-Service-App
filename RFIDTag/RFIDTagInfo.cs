@@ -12,43 +12,42 @@ namespace RFIDTag
 {
     public class RFIDTagData
     {
+        public string label = "";
+        public string tagDecryptedInfo = "";
+        public string tagReserve = "";
+        public string tagData = "";
+
         public string EPC_ID;
         public ulong EPC_PS_Num;
-        public string EPC_data;
+        //public string EPC_data;
         public int readCount;
         public int notUpdateCount;
         public int rssi;
         public int verifiedFailCount;
+        public TagStatus tag_Status;
 
         public RFIDTagData()
         {
             EPC_ID = "";
             EPC_PS_Num = 0;
-            EPC_data = "";
+            //EPC_data = "";
             readCount = 0;
             rssi = 0;
             verifiedFailCount = 0;
-        }
-    }
-
-    public class TagInfo
-    {
-        public string label = "";
-        public string tagDecryptedInfo = "";
-        public string tagReserve = "";
-        public string tagData = "";
-        public bool bVerified = false;
-
-        public TagInfo()
-        {
+            tag_Status = TagStatus.Reading;
             label = "";
             tagDecryptedInfo = "";
             tagReserve = "";
             tagData = "";
-            bVerified = false;
+        }
+        public enum TagStatus
+        {
+            Reading,
+            VerifiedConfirm,
+            GreenOn
         }
     }
-
+    
     public class RFIDTagInfo
     {        
         private const ulong tonerMAXVolume = 2000000000000; //max is 2L * 1000000000
@@ -255,7 +254,7 @@ namespace RFIDTag
             return false;
         }
 
-        public static string getLogData(bool bUseTagInfo, string inputTagLabel, TagInfo tagInfo)
+        public static string getLogData(bool bUseTagInfo, string inputTagLabel, RFIDTagData tagInfo)
         {        
             string strHeadType = "", strIntType = "", strVolume = "",
                    strDate = "", strSupplier = "", tagLabel = "";
