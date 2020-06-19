@@ -112,7 +112,7 @@ namespace RFIDTag
             catch(Exception exp)
             {
                 Trace.WriteLine("Get Exception " + exp.Message);
-                Thread.Sleep(300);
+                Thread.Sleep(200);
                 return false;
             }
             return true;
@@ -339,7 +339,7 @@ namespace RFIDTag
             }           
         }
 
-        public const byte btErasecount = 4;
+        public const byte btErasecount = 2;
         public static bool verifyData(string inputData, bool bVerifyData, bool bRead2Erase)
         {//1. input label = correct, bRead2Erase = false,
          //2. input label = 0, bRead2Erase = true;
