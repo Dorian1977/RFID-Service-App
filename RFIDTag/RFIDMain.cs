@@ -62,10 +62,10 @@ namespace RFIDTag
         const string inkLogFolder = "\\RFIDTag";                    //C:\ProgramData
         const string inkLogFile = "\\RFIDTrace.log";                //C:\ProgramData\RFIDTag
         const string RFIDlogFile = "\\log.dat";                     //C:\ProgramData\RFIDTag
-
+        const string inkTypeFile = "\\inkTypeSupport.dat";          //C:\ProgramData\RFIDTag
         //authorization ink time stamp 1 days allowed
         //also record in log file, and verified it everytime read it
-        const int dayAllowed = 1;
+
         int firmwareRetry = 0;
         bool bSendComPort = false;
 
@@ -134,7 +134,7 @@ namespace RFIDTag
                 Trace.Listeners.Add(new TextWriterTraceListener(logFolder+ inkLogFile, "myListener"));
                 Trace.AutoFlush = true;
                 Trace.WriteLine("Path: " + path);
-                RFIDTagInfo.loadFilePath(path, inkLogFolder + RFIDlogFile, inkFile, inkAuthFile);       
+                RFIDTagInfo.loadFilePath(path, inkLogFolder + RFIDlogFile, inkFile, inkAuthFile, inkLogFolder + inkTypeFile);       
             }
             catch (Exception exp) { Trace.WriteLine("Got Exception " + exp.Message); }
 
@@ -170,7 +170,7 @@ namespace RFIDTag
             });
             threadInventory.Start();
 
-            timerResetLED = new System.Timers.Timer(5000);
+            timerResetLED = new System.Timers.Timer(3000);
             timerResetLED.Elapsed += OnTimerResetLED;
             timerResetLED.AutoReset = false;
             timerResetLED.Enabled = false;
@@ -178,8 +178,8 @@ namespace RFIDTag
 
         void OnTimerResetLED(object sender, ElapsedEventArgs e)
         {
-            Trace.WriteLine("Timer hold LED");
-            setLEDstaus(LEDStatus.Off);
+            Trace.WriteLine(checkTime() + "Timer hold LED");
+            //setLEDstaus(LEDStatus.BlinkingGreen);
             setLEDstaus(LEDStatus.Off);
         }
 
@@ -363,7 +363,7 @@ namespace RFIDTag
                 if (strAuthData != "")
                 {
                     string[] authDataArry = strAuthData.Split(',');
-                    if (RFIDTagInfo.checkAuthDate(authDataArry[0], dayAllowed) == 1)
+                    if (RFIDTagInfo.checkAuthDate(authDataArry[0], RFIDTagInfo.monthAllowed) == 1)
                     {
                         if (File.Exists(RFIDTagInfo.readLogFilePath()))
                         {
@@ -1005,8 +1005,16 @@ namespace RFIDTag
                     break;
                 case LEDStatus.Green:
                     {
+                        Trace.WriteLine(checkTime() + "LED Green ON ");
+#if true
                         WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 1);                                         
-                        Trace.WriteLine(checkTime() + "LED Green ON ");                       
+#else
+                          
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Red, 0);
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 1);
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 0);
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 0);
+#endif
                     }
                     break;
                 case LEDStatus.BlinkingRed:
@@ -1020,10 +1028,14 @@ namespace RFIDTag
                     break;
                 case LEDStatus.BlinkingGreen:
                     {
+#if true
                         WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Red, 0);
                         WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 1);                
                         WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 0);
                         WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 0);
+#else
+                        WriteLEDGPIO(m_curSetting.btReadId, (byte)LED.Green, 1);
+#endif
                     }
                     break;
             }
@@ -1394,7 +1406,9 @@ namespace RFIDTag
                             case readTagStatus.ZeroData:
                                 {
                                     messageCount = 0;
-                                    setLEDstaus(LEDStatus.BlinkingGreen);
+
+                                    if (!timerResetLED.Enabled)
+                                        setLEDstaus(LEDStatus.BlinkingGreen);
                                 }
                                 break;
 
@@ -1927,7 +1941,7 @@ namespace RFIDTag
                                 Trace.WriteLine("Reading tag format not support Exception " + ex.Message);
                                 setLEDstaus(LEDStatus.BlinkingRed); //red on
                             }
-#endif       
+#endif
                         }                        
                         else
                         {
@@ -1951,7 +1965,9 @@ namespace RFIDTag
                                     tagState = readTagStatus.Reading;
                                     Trace.WriteLine(checkTime() + "Idle force reset");
                                 }
-                                LEDTimerStart(false);
+                                if(tagState == readTagStatus.ReadReserveFailed ||
+                                   tagState == readTagStatus.VerifiedFailed)
+                                    LEDTimerStart(false);
                             }
                             goto Idle;
                         }
@@ -1964,7 +1980,9 @@ namespace RFIDTag
 #endif
                             messageCount = 0;
                             m_nTotal = 0;
-                            setLEDstaus(LEDStatus.BlinkingGreen);
+
+                            if(!timerResetLED.Enabled)
+                                setLEDstaus(LEDStatus.BlinkingGreen);
                         }
                     }
                     break;

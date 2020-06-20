@@ -49,7 +49,8 @@ namespace RFIDTag
     }
     
     public class RFIDTagInfo
-    {        
+    {
+        public const int monthAllowed = 1;
         private const ulong tonerMAXVolume = 2000000000000; //max is 2L * 1000000000
         public const char serialSep = '=';
         public static byte[] accessCode = null;
@@ -59,18 +60,20 @@ namespace RFIDTag
         private static string tonerVolumeFile = "";
         private static string inkAuthFile = "";
         private static string inkLogFile = "";
+        private static string inkTypeFile = "";
         private static string inkFolder = "";
         public static UInt32 dongleID = 0;
         public static List<string> labelList = new List<string>();
         
         public static void loadFilePath(string folder, string filePath, 
                                         string fileInkFilePath, 
-                                        string fileAuthInk)
+                                        string fileAuthInk, string _inkTypeFile)
         {
             inkFolder = folder;
             inkLogFile = folder + filePath;
             tonerVolumeFile = folder + fileInkFilePath;
             inkAuthFile = folder + fileAuthInk;
+            inkTypeFile = folder + _inkTypeFile;
         }
 
         public static void loadLabelFormat(byte[] lableFormatBytes)
@@ -86,6 +89,11 @@ namespace RFIDTag
         public static string readinkAuthFilePath()
         {
             return inkAuthFile;
+        }
+
+        public static string readinkTypeFile()
+        {
+            return inkTypeFile;
         }
 
         public static string readLabelFormat()
@@ -319,24 +327,37 @@ namespace RFIDTag
 
         //strAuthData
         //DateTime, Serial number, dongle ID
-        public static int checkAuthDate(string strAuthDate, int dayAllowed)
+        public static int checkAuthDate(string strAuthDate, int monthAllowed)
         {//return 0, mean found the tag
          //return -1, mean verified failed
          //return 1, mean verified successful
             DateTime parsedDate = DateTime.Now;
-            try
+            string strCompare = "MMyy";
+            for (int i = 0; i < 2; i++)
             {
-                parsedDate = DateTime.ParseExact(strAuthDate, "MMddyy", CultureInfo.InvariantCulture);                
-                if (DateTime.Now > parsedDate)
-                    return -1;
-                else
-                    return 1;
+                switch(i)
+                {
+                    case 0://RFID tag
+                        strCompare = "MMyy";
+                        break;
+                    case 1://RFID auth file
+                        strCompare = "MMddyy";
+                        break;
+                }
+                try
+                {
+                    parsedDate = DateTime.ParseExact(strAuthDate, strCompare, CultureInfo.InvariantCulture);
+                    if (DateTime.Now > parsedDate.AddMonths(monthAllowed))
+                        return -1;
+                    else
+                        return 1;
+                }
+                catch (FormatException exp)
+                {
+                    continue;
+                }
             }
-            catch (FormatException exp)
-            {
-                Trace.WriteLine("Get Exception " + exp.Message);
-                return 0;
-            }           
+            return 0;         
         }
 
         public const byte btErasecount = 2;
@@ -360,9 +381,27 @@ namespace RFIDTag
                 if (bVerifyData)
                 {
                     string[] checkData = inputData.Split(RFIDTagInfo.serialSep);
-                    if (checkData[0].StartsWith(labelFormat.Replace('_',' ').Trim()))
-                    {
-                        return true;
+                    if (checkData[0].StartsWith(labelFormat.Replace('_',' ').Trim()) )
+                    {//1. check label
+                     //2. check expire date
+                     //3. check ink type
+                        string inkType = checkData[1].Substring(0, 4);
+                        string expireDate = checkData[1].Substring(8, 4);
+                       
+                        if (checkAuthDate(expireDate, monthAllowed) == 1)
+                        {
+                            if (File.Exists(inkTypeFile))
+                            {
+                                using (StreamReader sr = File.OpenText(inkTypeFile))
+                                {
+                                    string[] lines = sr.ReadLine().Split(',');
+                                    if (Array.IndexOf(lines, inkType) >= 0)
+                                    {
+                                        return true;
+                                    }
+                                }
+                            }                            
+                        }                        
                     }
                     return false;
                 }
