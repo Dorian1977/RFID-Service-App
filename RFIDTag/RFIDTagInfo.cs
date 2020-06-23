@@ -54,6 +54,7 @@ namespace RFIDTag
         private const ulong tonerMAXVolume = 2000000000000; //max is 2L * 1000000000
         public const char serialSep = '=';
         public static byte[] accessCode = null;
+        public static string inkSupportType = "0203,0201,";
 
         private static ulong currentTonerVolume = 0; //1L = 1,000,000,000,000 pL
         private static string labelFormat = "";
@@ -74,6 +75,15 @@ namespace RFIDTag
             tonerVolumeFile = folder + fileInkFilePath;
             inkAuthFile = folder + fileAuthInk;
             inkTypeFile = folder + _inkTypeFile;
+
+            if (!File.Exists(inkTypeFile))
+            {//create file first
+                using (StreamWriter sw = File.CreateText(inkTypeFile))
+                {
+                    sw.WriteLine(inkSupportType);
+                    sw.Close();
+                }
+            }
         }
 
         public static void loadLabelFormat(byte[] lableFormatBytes)
