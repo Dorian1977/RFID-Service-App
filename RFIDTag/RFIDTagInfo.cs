@@ -274,20 +274,38 @@ namespace RFIDTag
 
         public static string getLogData(bool bUseTagInfo, string inputTagLabel, RFIDTagData tagInfo)
         {        
-            string strHeadType = "", strIntType = "", strVolume = "",
-                   strDate = "", strSupplier = "", tagLabel = "";
+            string strHeadType = "02", strIntType = "03", strVolume = "1000",
+                   strDate = "", strSupplier = "00", tagLabel = "";
 
+            DateTime aTime = DateTime.Now;
+            strDate = (Convert.ToInt32(aTime.ToString("MMyy")) + 1).ToString();             
             if (bUseTagInfo)
             {
                 if (tagInfo.label == "" || tagInfo.tagDecryptedInfo == "")
                     return "";
 
                 string[] tmpList = tagInfo.tagDecryptedInfo.Split(serialSep);
-                strHeadType = tmpList[1].Substring(0, 2);
-                strIntType = tmpList[1].Substring(2, 2);
-                strVolume = tmpList[1].Substring(4, 4);
-                strDate = tmpList[1].Substring(8, 4);
-                strSupplier = tmpList[1].Substring(12, 2);
+                for(int i=0; i< tmpList[1].Length; i+=2)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            strHeadType = tmpList[1].Substring(0, 2);
+                            break;
+                        case 2:
+                            strIntType = tmpList[1].Substring(2, 2);
+                            break;
+                        case 4:
+                            strVolume = tmpList[1].Substring(4, 4);
+                            break;
+                        case 8:
+                            strDate = tmpList[1].Substring(8, 4);
+                            break;
+                        case 12:
+                            strSupplier = tmpList[1].Substring(12, 2);
+                            break;
+                    }
+                }       
                 tagLabel = tagInfo.label;
             }
             else

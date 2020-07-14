@@ -35,7 +35,7 @@ namespace RFIDTag
         public short rwTagDelay = 50; //50ms, read failed(1/5). 30ms, read failed (2/3). 20ms, read failed (3/5)
         public short LEDDelay = 100;//300ms (3.5s, 4.7s, 4.6s); 200ms (1.4s, 2.39, 3.3), 100ms read failed (5 times)
 #else
-        public short threadSleep = 160; //50 ms, got 3.6 ~ 5s, 100ms got 1.05 ~ 2.3s, embedded Windows 200ms ok, (300ms too slow)
+        public short threadSleep = 160; //50 ms, got 3.6 ~ 5s, 100ms got 1.05 ~ 2.3s, embedded Windows 200ms ok, (300ms too slow), set to 160
         public short m_nRealRate = 5; //5, stable; (embedded (3 is too fast))
         //Win 10: 50ms, read failed(1/5). 30ms, read failed (2/3). 20ms, read failed (3/5), 
         //Embedded Windows: 50ms(1/5) ok, 60ms(4/5), 70ms(4/5), 30ms, 40ms will queue write command when write keep failing
@@ -938,7 +938,7 @@ namespace RFIDTag
                 else
                 {
                     writeFailed++;
-                    Trace.Write("Retry write GPIO " + writeCnt + " rate " + writeFailed + " (" + writeSuccessed + ")");
+                    //Trace.Write("Retry write GPIO " + writeCnt + " rate " + writeFailed + " (" + writeSuccessed + ")");
                     Thread.Sleep(rfidSetting.LEDDelay);
                 }
             } while ((bWriteResult != 0) && writeCnt < writeMAXCnt);           
@@ -1121,13 +1121,6 @@ namespace RFIDTag
                     tagState = readTagStatus.Erasing;
                     writeZeroTag(0, 0, RFIDTagInfo.btErasecount);
                     writeTagRetry = 0;
-                    /*
-#if WRITE_RESERVE
-                    readRFIDTag(0, RFIDTagInfo.btErasecount, RFIDTagInfo.accessCode);
-#else
-                    readRFIDTag(3, RFIDTagInfo.btErasecount, RFIDTagInfo.accessCode);                   
-#endif
-*/
                 }
                 return;
             }
@@ -1352,18 +1345,20 @@ namespace RFIDTag
 #if LOG_ENCRYPTED
                                     if (RFIDTagInfo.addLog(symmetric.Encrypt(RFIDTagInfo.getLogData(true, "", tagInfo))))
 #else
-                                    if (RFIDTagInfo.addLog(RFIDTagInfo.getLogData(true, "", tagLists[index])))
-#endif
-                                    {                                        
-                                        tagLists[index].tag_Status = RFIDTagData.TagStatus.GreenOn;
-                                        setLEDstaus(LEDStatus.RedOff);
-                                        setLEDstaus(LEDStatus.Green); //green on
-                                        setLEDstaus(LEDStatus.Green); //green on                                       
-                                        setLEDstaus(LEDStatus.Green); //green on  
-                                        Trace.Flush();
-                                        LEDTimerStart(true);
-                                        tagState = readTagStatus.ZeroData;                                        
+                                    if (!RFIDTagInfo.addLog(RFIDTagInfo.getLogData(true, "", tagLists[index])))
+                                    {
+                                        Trace.WriteLine("*** Error, Phase data to log file failed ***");
                                     }
+#endif                                      
+                                    tagLists[index].tag_Status = RFIDTagData.TagStatus.GreenOn;
+                                    setLEDstaus(LEDStatus.RedOff);
+                                    setLEDstaus(LEDStatus.Green); //green on
+                                    setLEDstaus(LEDStatus.Green); //green on                                       
+                                    setLEDstaus(LEDStatus.Green); //green on  
+                                    Trace.Flush();
+                                    LEDTimerStart(true);
+                                    tagState = readTagStatus.ZeroData;                                        
+                                 
                                     break; 
                                 }
 
